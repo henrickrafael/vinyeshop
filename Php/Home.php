@@ -1,3 +1,8 @@
+<?php
+    include('conexao.php');
+    include('sqlFunctions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +18,7 @@
 <body>
     <div class="top_menu">
         <div class="top_menu_item">
-            <span><a href="#">Página inical</a></span>
+            <span><a href="#">Página inicial</a></span>
             <span><a href="#">Meu perfil</a></span>            
         </div> <!--top_menu_item-->
     </div> <!--top_menu-->
@@ -25,8 +30,18 @@
             </div> <!-- label-wrapper-pw -->
             <form action="#" method="POST">
                 <div class="input-wrapper-pw">                    
+                    <select name="ordern">
+                        <option value="" disabled selected>Ordenação</option>
+                        <option value="1">Ordenar por nome do artista</option>
+                        <option value="2">Ordenar por nome do disco</option>
+                    </select>
+                </div><!--input-wrapper-pw-->
+                <div class="input-wrapper-pw">                    
                     <input type="text" name="nome_disco" placeholder="Nome do disco">
                 </div><!--input-wrapper-pw-->
+                <div class="input-wrapper-pw">                    
+                    <input type="text" name="nome_artista" placeholder="Nome do artista">
+                </div><!--input-wrapper-pw-->                
                 <div class="price-wrapper-pw">
                     <input type="number" min="0" name="valor_inicial" placeholder="Preço inicial">
                     <input type="number" min="0" name="valor_final" placeholder="Preço final">
@@ -37,60 +52,38 @@
             </form>
         </div> <!-- left-option-wrapper -->
         <div class="product-main-wrapper">
+
+        <?php
+            $select = 
+            "SELECT d.id as 'Id', d.nome as 'Disco', d.valor as 'Preco', d.foto as 'Foto', a.nome as 'Artista'
+            FROM discos d 
+            INNER JOIN artistas a on d.id_artista = a.id WHERE a.ativo = 'S' ";
+
+            $query = mysqli_query($con, $select);
+
+        while($sql=mysqli_fetch_array($query)) { ?> 
             <div class="product-wrapper">
-                <div class="image-wrapper"></div>
-                <div class="label-text-produto">
-                    <span>Kill 'Em All</span>
+                <div class="image-wrapper">
+                    <img src="<?php echo $sql['Foto'] ?>" onerror="this.src='../images/vinyl.svg';this.class='image-error'" alt="Capa do disco">
                 </div>
                 <div class="label-text-produto">
-                    <span>Artista: Metallica</span>
+                    <span><?php echo $sql['Disco'] ?></span>
                 </div>
                 <div class="label-text-produto">
-                    <span>Preço: R$ 49,99</span>
+                    <span>Artista: <?php echo $sql['Artista'] ?></span>
+                </div>
+                <div class="label-text-produto">
+                    <span>Preço: <?php echo $sql['Preco'] ?></span>
                 </div>
                 <div class="label-text-produto lnk-view">
                     <div class="lnk-style">
-                        <a href="#">Visualizar</a>
+                        <a href="Home.php?<?php echo $sql['Id']?>">Visualizar</a>
                     </div>
                 </div>
-            </div>
-            <div class="product-wrapper">
-                <div class="image-wrapper"></div>
-                <div class="label-text-produto">
-                    <span>Kill 'Em All</span>
-                </div>
-                <div class="label-text-produto">
-                    <span>Artista: Metallica</span>
-                </div>
-                <div class="label-text-produto">
-                    <span>Preço: R$ 49,99</span>
-                </div>
-                <div class="label-text-produto lnk-view">
-                    <div class="lnk-style">
-                        <a href="#">Visualizar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="product-wrapper">
-                <div class="image-wrapper"></div>
-                <div class="label-text-produto">
-                    <span>Kill 'Em All</span>
-                </div>
-                <div class="label-text-produto">
-                    <span>Artista: Metallica</span>
-                </div>
-                <div class="label-text-produto">
-                    <span>Preço: R$ 49,99</span>
-                </div>
-                <div class="label-text-produto lnk-view">
-                    <div class="lnk-style">
-                        <a href="#">Visualizar</a>
-                    </div>
-                </div>
-            </div>
-            
+            </div> 
+
+        <?php } #Fim do while ?> 
         </div> <!--product-wrapper-->
     </div> <!--main-wrapper-->
-
 </body>
 </html>

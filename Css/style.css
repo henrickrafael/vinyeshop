@@ -108,7 +108,7 @@ input::-webkit-inner-spin-button {
     width: 100%;
 }
 
-.input-wrapper-pw input[type="text"], input[type="submit"] {
+.input-wrapper-pw input[type="text"], input[type="submit"], select {
     width: 100%;
     height: 95%;
     border-radius: 0;
@@ -130,7 +130,7 @@ input::-webkit-inner-spin-button {
    height: 3.4em;
    box-sizing: border-box;
    display: flex;
-   justify-content: space-evenly;
+   justify-content: space-between;
 }
 
 .price-wrapper-pw input[type="number"] {
@@ -172,7 +172,7 @@ input::-webkit-inner-spin-button {
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 .product-wrapper {
     /* border: 1px solid; */
@@ -188,6 +188,7 @@ input::-webkit-inner-spin-button {
 .image-wrapper {
     margin: 0 auto;
     margin-top: 0.5em;
+    padding: 2px;
     border: 1px solid white;
     background-color: white;
     border-radius: 8px;
@@ -196,8 +197,20 @@ input::-webkit-inner-spin-button {
     height: 55%;
 }
 
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    align-self: center;
+    border-radius: 2px;
+}
+
+img .image-error  {
+    width: 50%;
+    height: 50%;
+}
+
 .label-text-produto {
-    /* border: 1px solid; */
+    /* border: 1px solid;  */
     margin: 0 auto;
     margin-top: 0.5em;
     box-sizing: border-box;
@@ -205,6 +218,11 @@ input::-webkit-inner-spin-button {
     font-family: 'Poppins', sans-serif;
     font-weight: 900;
 }
+
+.label-text-produto span {
+    margin-left: 0.4em;
+}
+
 
 .lnk-view {
     margin-top: 2em;

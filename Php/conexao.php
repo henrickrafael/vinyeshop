@@ -3,7 +3,7 @@
 	$host = 'localhost';
 	$usr = 'root';
 	$pwd = 'nirvana123';
-	$db = 'pamonha';
+	$db = 'vinyeshop';
 	$port = 3306;
 	$socket = '/var/run/mysqld/mysqld.sock';
 
