@@ -15,19 +15,31 @@
         <div class="top_menu_item">
             <span><a href="#">Página inical</a></span>
             <span><a href="#">Meu perfil</a></span>            
-        </div>
-    </div>
+        </div> <!--top_menu_item-->
+    </div> <!--top_menu-->
     <div class="hr"></div>
     <div class="main-wrapper">
         <div class="left-option-wrapper">
             <div class="label-wrapper-pw">
                 <span>Filtrar por:</span>
-            </div>
-        </div>
+            </div> <!-- label-wrapper-pw -->
+            <form action="#" method="POST">
+                <div class="input-wrapper-pw">                    
+                    <input type="text" name="nome_disco" placeholder="Nome do disco">
+                </div><!--input-wrapper-pw-->
+                <div class="price-wrapper-pw">
+                    <input type="number" min="0" name="valor_inicial" placeholder="Preço inicial">
+                    <input type="number" min="0" name="valor_final" placeholder="Preço final">
+                </div>
+                <div class="input-wrapper-pw input-wrapper-submit-pw">
+                    <input type="submit" name="botao" value="Pesquisar">
+                </div>
+            </form>
+        </div> <!-- left-option-wrapper -->
         <div class="product-wrapper">
             
-        </div>
-    </div>
+        </div> <!--product-wrapper-->
+    </div> <!--main-wrapper-->
 
 </body>
 </html>

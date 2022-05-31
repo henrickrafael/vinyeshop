@@ -10,6 +10,12 @@ html, body {
     /*background: black;*/
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .top_menu {
     width: 100%;
     height: 5em;
@@ -68,7 +74,7 @@ html, body {
 }
 
 .left-option-wrapper {
-    border: 1px solid;
+    /* border: 1px solid; */
     width: 25%;
     height: 24em;
     box-sizing: border-box;
@@ -87,12 +93,77 @@ html, body {
     border-radius: 3px;
     box-sizing: border-box;
     padding: 12px;
+    margin-bottom: 2em;
 }
 
 .label-wrapper-pw span {
     font-family: 'Poppins', sans-serif;
     font-size: large;
     font-weight: bolder;
+}
+
+.input-wrapper-pw {
+    margin-top: 1em;
+    height: 2.5em;
+    width: 100%;
+}
+
+.input-wrapper-pw input[type="text"], input[type="submit"] {
+    width: 100%;
+    height: 95%;
+    border-radius: 0;
+    outline: none;
+    border: 1px solid #b8b8b8;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.input-wrapper-pw input[type="text"]:focus, .price-wrapper-pw input[type="number"]:focus {
+    border: 2px solid black;
+}
+
+.price-wrapper-pw {
+   margin-top: 1em;
+   width: 100%;
+   height: 3.4em;
+   box-sizing: border-box;
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.price-wrapper-pw input[type="number"] {
+    width: 48%;
+    height: 85%;
+    outline: none;
+    border-radius: 0;
+    border: 1px solid #ecebeb;
+    background: #ecebeb;
+    -moz-appearance: textfield;
+    font-family: 'Poppins', sans-serif;
+    padding: 8px;
+    font-weight: bold;
+    color: black;
+}
+
+.price-wrapper-pw input[type="number"]::placeholder {
+    opacity: 1;
+}
+
+.input-wrapper-submit-pw input[type="submit"] {
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    background: #262626;
+    border: #262626;
+    padding: 4px;
+}
+
+.input-wrapper-submit-pw input[type="submit"]:hover {
+    cursor: pointer;
+    background: #131313;
+    transition: 0.3s;
 }
 
 .product-wrapper {
