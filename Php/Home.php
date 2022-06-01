@@ -30,7 +30,7 @@
             </div> <!-- label-wrapper-pw -->
             <form action="#" method="POST">
                 <div class="input-wrapper-pw">                    
-                    <select name="ordern">
+                    <select name="ordenacao">
                         <option value="" disabled selected>Ordenação</option>
                         <option value="1">Ordenar por nome do artista</option>
                         <option value="2">Ordenar por nome do disco</option>
