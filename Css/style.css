@@ -63,7 +63,7 @@ input::-webkit-inner-spin-button {
 }
 
 .main-wrapper {
-    border: 1px solid;
+    /* border: 1px solid; */
     width: 95%;
     margin: 0 auto;
     margin-top: 2em;
@@ -248,4 +248,129 @@ img .image-error  {
 
 .lnk-style a:hover {
     cursor: pointer;
+}
+
+.main-login-wrapper {
+    border: 1px solid #b8b8b8;
+    margin: 0 auto;
+    margin-top: 4em;
+    width: 67em;
+    height: 32em;
+    box-sizing: border-box;
+    display: flex;
+    box-shadow: 3px 3px 14px -3px rgba(0,0,0,0.94); 
+}
+
+.main-login {
+    /* border: 1px solid; */
+    display: block;
+    width: 50%;
+    height: 100%;
+}
+
+.login-label {
+    /* border: 1px solid;  */
+    margin-top: 5em;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 4em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-login-wrapper {
+    /* border: 1px solid; */
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-top: 1em;
+    height: 5em;
+    width: 70%;
+}
+
+.input-login {
+     /* border: 1px solid; */
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 90%;
+    height: 90%;
+}
+
+.input-login input[type="email"], input[type="password"] {
+    width: 100%;
+    height: 60%;
+    outline: none;
+    border-radius: 0;
+    border: 1px solid #b8b8b8;
+    padding: 8px;
+    font-size: large;
+}
+
+.input-login input[type="email"]:focus, input[type="password"]:focus {
+    border: 2px solid black;
+}
+
+.input-login span {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    display: block;
+}
+
+.input-password {
+    margin-top: 1em;
+}
+
+.input-submit-login {
+    margin-top: 0.3em;
+    height: 3.5em;
+}
+
+.input-submit-login input[type="submit"] {
+    font-size: large;
+    font-weight: bold;
+    background: #262626;
+    color: white;
+}
+
+.input-submit-login input[type="submit"]:hover {
+    background: #131313;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.wrapper-register-option {
+    /* border: 1px solid; */
+    margin: 0 auto;
+    margin-top: 1em;
+    text-align: center;
+    box-sizing: border-box;
+    width: 60%;
+    height: 4em;
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper-register-option span {
+    display: block;
+    margin-bottom: 0.2em;
+}
+
+.wrapper-register-option span a {
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+}
+
+.wrapper-register-option span a:hover {
+    text-decoration: underline;
+}
+
+.image-login {
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+}
+
+.image-login img {
+    height: 100%;
+    width: 100%;
 }
