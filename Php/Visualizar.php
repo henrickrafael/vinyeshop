@@ -14,44 +14,46 @@
     <div class="main-product-wrapper">
         <div class="img-product-view">
             <div class="img-product-wrapper">
-                <img src="" alt="">
+                <img src="../images/in-utero.jpg" alt="">
             </div>
         </div>
         <div class="img-product-info">
             <div class="label-header">
-                <h2>Título do produto</h2>
+                <h2>In Utero</h2>
             </div>
             <div class="product-description">
                 <div class="label-header">
                     <h3>Descrição</h3>
                 </div>
                 <div class="text-info">
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>Segundo albúm da banda de grunge Nirvana</p>
                 </div>
                 <div class="artist-label">
                     <span>Artista:</span>
-                    <span>Nome do artista</span>
+                    <span>Nirvana</span>
                  </div>
                  <div class="genre-label">
                     <span>Gênero:</span>
-                    <span>Nome do gênero</span>
+                    <span>Grunge</span>
                  </div>
                  <div class="release-label">
                     <span>Lançamento:</span>
-                    <span>Data de lançamento</span>
+                    <span>13/08/1993</span>
                  </div>
                  <div class="quantity-label">
                     <span>Disponíveis:</span>
-                    <span>Quantidade</span>
+                    <span>6</span>
                  </div>
-                 <div class="button-label">
-                    <div class="price-wrapper-pw">
-                        <input type="number" min="1" name="qtd" placeholder="Quantidade">
+                 <form action="#" method="GET">
+                    <div class="button-label">
+                        <div class="price-wrapper-pw">
+                            <input type="number" min="1" name="qtd" placeholder="Quantidade" required>
+                        </div>
+                        <div class="input-wrapper-pw input-wrapper-submit-pw">
+                            <input type="submit" name="botao" value="Comprar">
+                        </div>
                     </div>
-                    <div class="input-wrapper-pw input-wrapper-submit-pw">
-                        <input type="submit" name="botao" value="Comprar">
-                    </div>
-                 </div>
+                 </form> 
             </div>
         </div>
     </div>
