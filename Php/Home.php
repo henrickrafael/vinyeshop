@@ -81,7 +81,6 @@
                     </div>
                 </div>
             </div> 
-
         <?php } #Fim do while ?> 
         </div> <!--product-wrapper-->
     </div> <!--main-wrapper-->
