@@ -18,10 +18,10 @@
 <body>
     <div class="top_menu">
         <div class="top_menu_item">
-            <span><a href="#">Página inicial</a></span>
+            <span><a href="Home.php">Página inicial</a></span>
             <span><a href="#">Meu perfil</a></span>            
         </div> <!--top_menu_item-->
-    </div> <!--top_menu-->
+    </div> <!--top_menu -->
     <div class="hr"></div>
     <div class="main-wrapper">
         <div class="left-option-wrapper">
@@ -37,11 +37,14 @@
                     </select>
                 </div><!--input-wrapper-pw-->
                 <div class="input-wrapper-pw">                    
-                    <input type="text" name="nome_disco" placeholder="Nome do disco">
+                    <input type="text" name="nome_disco" placeholder="Nome do disco" value="<?php echo @$_POST['nome_disco']?>">
                 </div><!--input-wrapper-pw-->
                 <div class="input-wrapper-pw">                    
-                    <input type="text" name="nome_artista" placeholder="Nome do artista">
-                </div><!--input-wrapper-pw-->                
+                    <input type="text" name="nome_artista" placeholder="Nome do artista" value="<?php echo @$_POST['nome_artista']?>">
+                </div><!--input-wrapper-pw-->
+                <div class="input-wrapper-pw">                    
+                    <input type="text" name="qtd_registros" placeholder="Quantidade de registros" value="<?php echo @$_POST['qtd_registros']?>">
+                </div><!--input-wrapper-pw-->                 
                 <div class="price-wrapper-pw">
                     <input type="number" min="0" name="valor_inicial" placeholder="Preço inicial">
                     <input type="number" min="0" name="valor_final" placeholder="Preço final">
@@ -57,14 +60,38 @@
             $select = 
             "SELECT d.id as 'Id', d.nome as 'Disco', d.valor as 'Preco', d.foto as 'Foto', a.nome as 'Artista'
             FROM discos d 
-            INNER JOIN artistas a on d.id_artista = a.id WHERE a.ativo = 'S' ";
+            INNER JOIN artistas a on d.id_artista = a.id WHERE a.ativo = 'S' and d.ativo = 'S' ";
+
+            if(@$_REQUEST['botao'] && isset($_POST['ordenacao'])) {
+                switch ($_POST['ordenacao']) {
+                    case "1":
+                        $select .= ' ORDER BY a.nome';
+                        $select .= ($_POST['qtd_registros'] ? " LIMIT {$_POST['qtd_registros']} " : "");
+                        break;
+                    case "2":
+                        $select .= ' ORDER BY d.nome';
+                        $select .= ($_POST['qtd_registros'] ? " LIMIT {$_POST['qtd_registros']} " : "");
+                        break;
+                } 
+            } elseif(@$_REQUEST['botao']) {
+
+                $p1 = ($_POST['valor_inicial'] ? $_POST['valor_inicial'] : 0);
+                $p2 = ($_POST['valor_final'] ? $_POST['valor_final'] : 999.99);
+
+                $select .= ($_POST['nome_artista'] ? " AND a.nome LIKE '%{$_POST['nome_artista']}%' " : "");
+                $select .= ($_POST['nome_disco'] ? " AND d.nome LIKE '%{$_POST['nome_disco']}%' " : "");
+                $select .= ($_POST['valor_inicial'] ? " AND d.valor BETWEEN {$p1} AND {$p2} " : "");
+                $select .= ($_POST['valor_final'] ? " AND d.valor BETWEEN {$p1} AND {$p2} " : "");
+                $select .= ($_POST['qtd_registros'] ? " LIMIT {$_POST['qtd_registros']} " : "");
+            } 
+            
 
             $query = mysqli_query($con, $select);
 
         while($sql=mysqli_fetch_array($query)) { ?> 
             <div class="product-wrapper">
                 <div class="image-wrapper">
-                    <img src="<?php echo $sql['Foto'] ?>" onerror="this.src='../images/vinyl.svg';this.class='image-error'" alt="Capa do disco">
+                    <img src="<?php echo $sql['Foto'] ?>" onerror="this.className='image-error'; this.src='../images/vinyl.svg'; " alt="Capa do disco">
                 </div>
                 <div class="label-text-produto">
                     <span><?php echo $sql['Disco'] ?></span>
@@ -77,7 +104,7 @@
                 </div>
                 <div class="label-text-produto lnk-view">
                     <div class="lnk-style">
-                        <a href="Home.php?<?php echo $sql['Id']?>">Visualizar</a>
+                        <a href="Visualizar.php?id=<?php echo $sql['Id']?>">Visualizar</a>
                     </div>
                 </div>
             </div> 

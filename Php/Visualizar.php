@@ -1,3 +1,12 @@
+<?php
+    include('conexao.php');
+    $id = @$_GET['id'];
+
+    // if(!isset($id)) {
+    //     echo "<script>window.location.replace('Home.php');</script>";
+    // }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,51 +20,72 @@
     <title>Produto</title>
 </head>
 <body>
+
+    <?php
+        $select = 
+        "SELECT d.id as 'Id', d.foto as 'Foto', d.nome as 'Disco', d.descricao as 'Descricao', d.lancamento as 'Lancamento', 
+        a.nome as 'Artista', g.nome as 'Genero', e.quantidade as 'Qtd' FROM discos d
+        INNER JOIN artistas a on d.id_artista = a.id
+        INNER JOIN genero g on d.id_genero = g.id
+        INNER JOIN estoque e on d.id = e.id_discos WHERE d.ativo = 'S' AND d.id = {$id} ";
+        $query = mysqli_query($con, $select);
+
+
+    while($sql=mysqli_fetch_assoc($query)) { ?>
     <div class="main-product-wrapper">
         <div class="img-product-view">
             <div class="img-product-wrapper">
-                <img src="../images/in-utero.jpg" alt="">
+                <img src="<?php echo $sql['Foto']?>" onerror="this.className='image-error'; this.src='../images/vinyl.svg';" alt="Capa do albúm">
             </div>
         </div>
         <div class="img-product-info">
             <div class="label-header">
-                <h2>In Utero</h2>
+                <h2><?php echo $sql['Disco']?></h2>
             </div>
             <div class="product-description">
                 <div class="label-header">
                     <h3>Descrição</h3>
                 </div>
                 <div class="text-info">
-                    <p>Segundo albúm da banda de grunge Nirvana</p>
+                    <p><?php echo $sql['Descricao']?></p>
                 </div>
                 <div class="artist-label">
                     <span>Artista:</span>
-                    <span>Nirvana</span>
+                    <span><?php echo $sql['Artista']?></span>
                  </div>
                  <div class="genre-label">
                     <span>Gênero:</span>
-                    <span>Grunge</span>
+                    <span><?php echo $sql['Genero']?></span>
                  </div>
                  <div class="release-label">
                     <span>Lançamento:</span>
-                    <span>13/08/1993</span>
+                    <span><?php echo $sql['Lancamento']?></span>
                  </div>
                  <div class="quantity-label">
                     <span>Disponíveis:</span>
-                    <span>6</span>
+                    <span><?php echo $sql['Qtd']?></span>
                  </div>
                  <form action="#" method="GET">
                     <div class="button-label">
-                        <div class="price-wrapper-pw">
-                            <input type="number" min="1" name="qtd" placeholder="Quantidade" required>
+                        <div class="price-wrapper-pw"> <!--Corrigir depois-->
+                            <input type="number" name="qtd" placeholder="Quantidade" required>
                         </div>
                         <div class="input-wrapper-pw input-wrapper-submit-pw">
                             <input type="submit" name="botao" value="Comprar">
                         </div>
                     </div>
+                <?php
+                     if(@$_REQUEST['botao']) {
+                        echo "<script>window.location.replace('Compra.php?');</script>";
+                     }
+                 ?>
                  </form> 
-            </div>
-        </div>
-    </div>
+            </div><!--product-description-->
+        </div><!--img-product-info-->
+    </div><!--main-product-wrapper-->
+<?php
+    } #Fim do While
+?>
+
 </body>
 </html>
