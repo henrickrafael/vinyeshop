@@ -40,7 +40,7 @@
             </div>
             <div class="wrapper-register-option">
                 <span>Ou</span>
-                <span><a href="#">Cadastre-se</a></span>
+                <span><a href="Cadastro.php">Cadastre-se</a></span>
             </div>
         </form>
         </div>

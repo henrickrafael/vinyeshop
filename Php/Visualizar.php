@@ -1,10 +1,14 @@
 <?php
     include('conexao.php');
+    include('sqlFunctions.php');
+
     $id = @$_GET['id'];
 
-    // if(!isset($id)) {
-    //     echo "<script>window.location.replace('Home.php');</script>";
-    // }
+    if(!isset($id)) {
+        echo "<script>window.location.replace('Home.php');</script>";
+    }
+
+    validaDiscoAtivo($con, $id);
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../Css/style.css">
+    <script src="../JS/script.js"></script>
     <title>Produto</title>
 </head>
 <body>
@@ -27,9 +32,10 @@
         a.nome as 'Artista', g.nome as 'Genero', e.quantidade as 'Qtd' FROM discos d
         INNER JOIN artistas a on d.id_artista = a.id
         INNER JOIN genero g on d.id_genero = g.id
-        INNER JOIN estoque e on d.id = e.id_discos WHERE d.ativo = 'S' AND d.id = {$id} ";
-        $query = mysqli_query($con, $select);
+        INNER JOIN estoque e on d.id = e.id_discos 
+        WHERE d.ativo = 'S' AND d.id = {$id} ";
 
+        $query = mysqli_query($con, $select);
 
     while($sql=mysqli_fetch_assoc($query)) { ?>
     <div class="main-product-wrapper">
@@ -59,7 +65,7 @@
                  </div>
                  <div class="release-label">
                     <span>Lançamento:</span>
-                    <span><?php echo $sql['Lancamento']?></span>
+                    <span><?php formataData($sql['Lancamento'])?></span>
                  </div>
                  <div class="quantity-label">
                     <span>Disponíveis:</span>
@@ -67,19 +73,15 @@
                  </div>
                  <form action="#" method="GET">
                     <div class="button-label">
-                        <div class="price-wrapper-pw"> <!--Corrigir depois-->
-                            <input type="number" name="qtd" placeholder="Quantidade" required>
-                        </div>
+                    <!-- <div class="price-wrapper-pw"> 
+                        <input name="qtd" id="qtty" type="number" placeholder="Quantidade">
+                    </div> -->
                         <div class="input-wrapper-pw input-wrapper-submit-pw">
-                            <input type="submit" name="botao" value="Comprar">
+                            <!-- <input type="submit" name="botao" value="Comprar"> -->
+                            <a id="buy" href="Compra.php?id=<?php echo $id ?>">Comprar</a>
                         </div>
-                    </div>
-                <?php
-                     if(@$_REQUEST['botao']) {
-                        echo "<script>window.location.replace('Compra.php?');</script>";
-                     }
-                 ?>
-                 </form> 
+                    </div>            
+                </form> 
             </div><!--product-description-->
         </div><!--img-product-info-->
     </div><!--main-product-wrapper-->

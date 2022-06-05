@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../Css/style.css">
-    <script src="../JS/validatePassword.js"></script>
+    <script src="../JS/script.js"></script>
     <title>Cadastro</title>
 </head>
 <body>

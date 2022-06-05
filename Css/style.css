@@ -554,14 +554,19 @@ input[type="date"]:focus {
     width: 30%;
     margin-top: 0.3em;
     text-align: center;
-    padding-top: 0.6em;
+    padding-top: 0.3em;
 }
+
+/* .button-label .input-wrapper-pw .input-wrapper-submit-pw .view {
+    padding-top: 0 !important;
+} */
 
 .button-label .input-wrapper-pw a {
     text-decoration: none;
     font-weight: bold;
     font-size: large;
     color: white;
+    padding: 6px;
     display: block;
     height: 100%;
     width: 100%;
@@ -571,7 +576,7 @@ input[type="date"]:focus {
 }
 
 .button-label .input-wrapper-submit-pw {
-    /* border: 1px solid blue;  */
+    /* border: 1px solid blue;   */
     height: 75%;
     background-color: #262626;
 }
@@ -647,4 +652,8 @@ input[type="date"]:focus {
     width: 100%;
     margin: 0 auto;
     margin-top: 0.5em;
+}
+
+.preco-input {
+    display: none;
 }
