@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+    include('conexao.php');
+    include('sqlFunctions.php');
+?>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -44,5 +48,27 @@
             <img src="../images/vinyl-wpp.jpg" alt="Wallpaper de vinyl">
         </div>
     </div>
+
+    <?php 
+if(@$_REQUEST['botao'] == "Entrar"){
+
+    @$email = @$_POST['email'];
+    @$senha = md5($_POST['senha']);
+    
+    $verify = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha' ";
+    $query = mysqli_query($con, $verify);
+    
+    while($row = mysqli_fetch_array($query)){
+        $_SESSION['id_usuario'] = $row['id'];
+        $_SESSION['nome_usuario'] = $row['nome'];
+        $_SESSION['tipo_usuario'] = $row['tipo'];
+    
+        header('Location:Home.php'); 
+		exit; 
+    }
+   
+}
+
+?>
 </body>
 </html>

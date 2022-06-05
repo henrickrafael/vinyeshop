@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+    include('conexao.php');
+    include('sqlFunctions.php');
+?>
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -21,25 +26,25 @@
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Nome completo</span>
-                    <input type="text" name="nome" required>
+                    <input type="text" name="nome" value="<?php echo @$_POST['nome']; ?>"required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>CPF</span>
-                    <input type="text" name="cpf" maxlength="11" required>
+                    <input type="text" name="cpf" maxlength="11" value="<?php echo @$_POST['cpf']; ?>"required>
                 </div>         
             </div>        
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Email</span>
-                    <input type="email" name="email" required>
+                    <input type="email" name="email" value="<?php echo @$_POST['email']; ?>" required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Data de nascimento</span>
-                    <input type="date" name="nasc" required>
+                    <input type="date" name="nasc" value="<?php echo @$_POST['nasc']; ?>" required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">
@@ -64,7 +69,7 @@
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Confirme a senha</span>
-                    <input onchange="checkSenha()" type="password" id="check_pwd" required>
+                    <input onchange="checkSenha()" type="password" name="confirma_senha" id="check_pwd" required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input input-file">
@@ -81,5 +86,65 @@
         </div>
         </form>      
     </div>
+<?php
+
+
+if (@$_REQUEST['id'] && !@$_REQUEST['botao'])
+{
+	$query = "
+		SELECT * FROM usuarios WHERE id=' {$_REQUEST['id']}'
+	";
+	$result = mysqli_query($con,$query);
+	$row = mysqli_fetch_assoc($result);
+	foreach( $row as $key => $value )
+	{
+		$_POST[$key] = $value;
+	}
+}
+
+
+if(@$_REQUEST['botao']){
+
+    @$senha = md5(@$_POST['senha']);
+    @$confirmasenha = md5(@$_POST['confirma_senha']);
+   
+    if ($senha == "d41d8cd98f00b204e9800998ecf8427e") {
+        $mensagem = "Senha não foi inserida!";
+    } 
+  
+    else if ($senha == $confirmasenha) {
+    
+        $file_name = $_FILES['foto']['name'];
+
+        $milliseconds = round(microtime(true) * 1000);
+        $data = date("d-m-Y-g-h-s").$milliseconds;
+        
+        
+        @$nFt = $data;
+        $nFt = str_replace('Array','', $nFt);
+        $ext = '.png';
+        
+        move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
+            $nome_Ft = 'teste/'.$nFt.$ext;
+
+        $insere = "INSERT INTO  usuarios (nome, cpf, email, nasc, sexo, senha, foto) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha','$nome_Ft')";
+
+        $result_insere = mysqli_query($con,$insere);
+
+            if ($result_insere) {
+                echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Login.php');</script>";
+            }
+
+    } 
+
+    else {
+            $mensagem = "As senhas não conferem!";
+            echo "<script>alert('$mensagem');</script>";
+        }
+    }
+    
+  
+
+?>
 </body>
 </html>
