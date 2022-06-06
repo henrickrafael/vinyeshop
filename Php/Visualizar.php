@@ -43,7 +43,7 @@
     <div class="main-product-wrapper">
         <div class="img-product-view">
             <div class="img-product-wrapper">
-                <img src="<?php echo $sql['Foto']?>" onerror="this.className='image-error'; this.src='../images/vinyl.svg';" alt="Capa do albúm">
+                <img src="<?php echo $sql['Foto']?>">
             </div>
         </div>
         <div class="img-product-info">

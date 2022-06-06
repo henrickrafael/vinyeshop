@@ -57,7 +57,7 @@
                     <span class="span-info" id="price">R$ <?php echo $sql['Preco']?></span>
                 </div>
                 <input class="preco-input" type="number" id="input-price" value="<?php echo $sql['Preco']?>">
-                <form action="#" method="POST">
+                <form action="#" method="POST" enctype="multipart/form-data">
                 <div class="quantity-label">
                         <span class="header">Tipo de pagamento:</span>
                         <input type="radio" name="pgto" value="C" required>
@@ -85,9 +85,16 @@
                         $valor = $sql['Preco'];
 
                         $total = ($qtd * $valor);
-                        echo $total;
+                        
+                        $insere = "INSERT INTO venda (id_discos, id_usuario, valor_total, data_compra, tipo_pagamento) values ('$id','1','$total',NOW(),'{$_POST['pgto']}')";
+                        $result_insere = mysqli_query($con,$insere);
+                            
+                        //IF de trava quantidade
+                        $update = "UPDATE estoque SET quantidade = (quantidade - '{$qtd}') WHERE id = '{$id}' ";
+                        $result_update = mysqli_query($con,$update);
+                        
 
-                        //INSERT em vendas
+                      
                         
                     }
                 ?>
