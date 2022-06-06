@@ -1,7 +1,6 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-    
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +18,8 @@
 <body>
     <div class="top_menu">
         <div class="top_menu_item">
-            <span><a href="Home.php">Página inicial</a></span>
-            <span><a href="#">Meu perfil</a></span>            
+            <span><a href="Login.php">Entrar</a></span>
+            <span><a href="Cadastro.php">Cadastre-se</a></span>            
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <div class="hr"></div>

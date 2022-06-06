@@ -1,7 +1,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-    include('verifica.php');
+    //include('verifica.php');
 
     $id = @$_GET['id'];
 
@@ -29,7 +29,8 @@
 
     <?php
         $select = 
-        "SELECT d.id as 'Id', d.foto as 'Foto', d.nome as 'Disco', d.descricao as 'Descricao', d.lancamento as 'Lancamento', 
+        "SELECT d.id as 'Id', d.foto as 'Foto', d.nome as 'Disco', d.descricao as 'Descricao', 
+        d.lancamento as 'Lancamento', d.valor as 'Preco',
         a.nome as 'Artista', g.nome as 'Genero', e.quantidade as 'Qtd' FROM discos d
         INNER JOIN artistas a on d.id_artista = a.id
         INNER JOIN genero g on d.id_genero = g.id
@@ -65,15 +66,17 @@
                     <span><?php echo $sql['Genero']?></span>
                  </div>
                  <div class="release-label">
+                    <span>Disponíves:</span>
+                    <span><?php echo $sql['Qtd'] ?></span>
+                 </div>
+                 <div class="quantity-label improvised">
                     <span>Lançamento:</span>
-                    <span><?php formataData($sql['Lancamento'])?></span>
+                    <span><?php echo formataData($sql['Lancamento'])?></span>                
                  </div>
-                 <div class="quantity-label container">
-                    <span>Disponíveis:</span>
-                    <span><?php echo $sql['Qtd']?></span>   
-                    <span>Disponíveis:</span>
-                    <span><?php echo $sql['Qtd']?></span>                  
-                 </div>
+                 <div class="quantity-label">
+                    <span>Preço:</span>
+                    <span><?php echo $sql['Preco']?></span>                
+                 </div>                 
                  <form action="#" method="GET">
                     <div class="button-label">
                     <!-- <div class="price-wrapper-pw"> 
