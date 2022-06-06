@@ -97,18 +97,20 @@ if(@$_REQUEST['botao']){
         //if ($senha == "d41d8cd98f00b204e9800998ecf8427e") {
         //$mensagem = "Senha não foi inserida!";
         
-    if ($senha == $confirmasenha) {
 
         if(validaCPF($_POST['cpf']) == false){
             echo "<script>alert('Cpf invalido');</script>";
             exit;
         }
-        
-        if($_FILES["foto"]["type"] !== "image/jpeg" || $_FILES["foto"]["type"] !== "image/png") { 
+
+    if ($senha == $confirmasenha) {
+
+        if( $_FILES["foto"]["type"] !== "image/png") { 
             echo "<script>alert('Imagem não suportada');</script>";
             exit;
         }
-
+       
+        
     
 
         $insere = "INSERT INTO usuarios (nome, cpf, email, nasc, sexo, senha) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha')";
@@ -131,13 +133,13 @@ if(@$_REQUEST['botao']){
 
             echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Home.php');</script>";
         }
-
-    } 
+    }
 
     else {
             $mensagem = "As senhas não conferem!";
             echo "<script>alert('$mensagem');</script>";
         }
+   
     }
     
     
