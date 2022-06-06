@@ -1,8 +1,8 @@
 <?php
     
-function insertDisco($con, String $nome, String $descricao, Int $id_artista, String $lanc, Int $id_genero, Float $preco, ?String $foto) {
-    $insert = "INSERT INTO discos (nome, descricao, id_artista, lancamento, id_genero, valor, foto, ativo)
-    VALUES ('{$nome}', '{$descricao}', '{$id_artista}', '{$lanc}', '{$id_genero}', '{$preco}', '{$foto}','S')";
+function insertDisco($con, String $nome, String $descricao, Int $id_artista, String $lanc, Int $id_genero, Float $preco) {
+    $insert = "INSERT INTO discos (nome, descricao, id_artista, lancamento, id_genero, valor, ativo)
+    VALUES ('{$nome}', '{$descricao}', '{$id_artista}', '{$lanc}', '{$id_genero}', '{$preco}','S')";
 
     $sql = mysqli_query($con, $insert);
     
