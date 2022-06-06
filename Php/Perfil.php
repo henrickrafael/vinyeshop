@@ -1,11 +1,10 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-    //include('verifica.php');    
+    include('verifica.php');    
 
-    $id = @$_GET['id'];
+    $id =  $_SESSION['id_usuario'];
 
-   
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +34,13 @@
         <div class="input-login-wrapper register-input">
             <div class="input-login">
                 <span>Email</span>
-                <input type="email" name="email" value="<?php echo $sql['email']?>" required>
+                <input type="email" name="email" value="<?php echo $sql['email']?>">
             </div>         
         </div>
         <div class="input-login-wrapper register-input">
             <div class="input-login">
                 <span>Foto</span>
-                <input type="file"required>
+                <input type="file" name="foto">
             </div>         
         </div>
         <div class="input-login-wrapper register-input">
@@ -61,30 +60,31 @@
     <?php }
 
 if(@$_REQUEST['botao'] == "Atualizar"){
-      @$senha = md5($_POST['senha']);
+    
+        $senha = md5($_POST['senha']);
     
         $update = "UPDATE usuarios SET 
         email = '{$_POST['email']}', 
-        senha = '{$senha}'
-        where id = '{$id}'";
+        senha = IF('{$senha}' = 'd41d8cd98f00b204e9800998ecf8427e', usuarios.senha, '{$senha}')
+        WHERE id = '{$id}' ";
 
 
         $result_update = mysqli_query($con,$update);
 
         if ($result_update) {
-            $file_name = $_FILES['foto']['name'];
+            @$file_name = $_FILES['foto']['name'];
             $last_id = mysqli_insert_id($con);
     
-            $nFt = $last_id;
+            $nFt = $id;
             $ext = '.png';
-            move_uploaded_file($_FILES['foto']['tmp_name'], 'images/'.$nFt.$ext);
+            move_uploaded_file(@$_FILES['foto']['tmp_name'], 'fotos/'.$nFt.$ext);
     
             $nomeFoto = $nFt.$ext;
     
             $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = '{$last_id}' ";
             mysqli_query($con, $update);
 
-            echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Home.php');</script>";
+            echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('Home.php');</script>";
         }
 }
     ?>

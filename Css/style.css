@@ -676,7 +676,7 @@ input[type="date"]:focus {
     margin-top: 2em;
     box-sizing: border-box;
     width: 60%;
-    height: 90%;
+    height: 92%;
     box-shadow: 3px 3px 14px -3px rgba(0,0,0,0.94); 
 }
 
@@ -685,6 +685,7 @@ input[type="date"]:focus {
     box-sizing: border-box;
     margin: 0 auto;
     margin-top: 3em;
+    margin-bottom: 1.5em;
     width: 30%;
     height: 40%;
 }
