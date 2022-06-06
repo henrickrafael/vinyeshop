@@ -124,9 +124,9 @@ if(@$_REQUEST['botao']){
     
             $nFt = $last_id;
             $ext = '.png';
-            move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
+            move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
     
-            $nomeFoto = $nFt.$ext;
+            $nomeFoto ="../images/".$nFt.$ext;
     
             $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
             mysqli_query($con, $update);

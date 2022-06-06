@@ -78,15 +78,14 @@ if(@$_REQUEST['botao'] == "Atualizar"){
 
         if ($result_update) {
             @$file_name = $_FILES['foto']['name'];
-            $last_id = mysqli_insert_id($con);
     
             $nFt = $id;
             $ext = '.png';
-            move_uploaded_file(@$_FILES['foto']['tmp_name'], 'fotos/'.$nFt.$ext);
+            move_uploaded_file(@$_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
     
-            $nomeFoto = $nFt.$ext;
+            $nomeFoto = '../images/'.$nFt.$ext;
     
-            $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = '{$last_id}' ";
+            $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = '{$id}' ";
             mysqli_query($con, $update);
 
             echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";

@@ -2,12 +2,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-    require('verifica.php');
-
-    $tipo_usr = $_SESSION['tipo_usuario'];
-    if($tipo_usr <> 'A') {
-        echo "<script>window.location.replace('HomeAuth.php');</script>";
-     }
+    
 
 
 ?>
@@ -113,7 +108,7 @@
 if(@$_REQUEST['botao']){
 
     $insert = "INSERT INTO discos (nome, descricao, id_artista, lancamento, id_genero, valor, ativo)
-    VALUES ('{$_POST['nome']}', '{$_POST['descricao']}', '{$_POST['artista']}', '{$_POST['lanc']}', '{$_POST['genero']}', '{$_POST['preco']}','S')";
+    VALUES ('{$_POST['nome']}', '{$_POST['desc']}', '{$_POST['artista']}', '{$_POST['lanc']}', '{$_POST['genero']}', '{$_POST['preco']}','S')";
 
     $sql = mysqli_query($con, $insert);
 
@@ -121,14 +116,15 @@ if(@$_REQUEST['botao']){
         if ($sql) {
             $file_name = $_FILES['foto']['name'];
             $last_id = mysqli_insert_id($con);
-    
-            $nFt = $last_id;
+            $nome =@$_POST['nome'];
+
+            $nFt = $nome;
             $ext = '.png';
-            move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
+            move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
     
-            $nomeFoto = $nFt.$ext;
+            $nomeFoto = '../images/'.$nFt.$ext;
     
-            $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
+            $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
             mysqli_query($con, $update);
 
             echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Home.php');</script>";
