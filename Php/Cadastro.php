@@ -22,7 +22,7 @@
             <div class="label-header">
                 <h2>Cadastre-se</h2>
             </div><!--label-header-->         
-            <form action="#" method="POST">
+            <form action="#" method="POST" enctype="multipart/form-data">
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Nome completo</span>
@@ -75,7 +75,7 @@
             <div class="input-login-wrapper register-input input-file">
                 <div class="input-login">
                     <span>Arquivo para foto de perfil</span>
-                    <input type="file">
+                    <input name="foto" type="file">
                 </div>         
             </div>
             <div class="input-login-wrapper input-submit-login">
@@ -96,15 +96,25 @@ if(@$_REQUEST['botao']){
    
         //if ($senha == "d41d8cd98f00b204e9800998ecf8427e") {
         //$mensagem = "Senha não foi inserida!";
-    
-  
+        
     if ($senha == $confirmasenha) {
-    
+
+        if(validaCPF($_POST['cpf']) == false){
+            echo "<script>alert('Cpf invalido');</script>";
+            exit;
+        }
+        
+        if($_FILES["foto"]["type"] !== "image/jpeg" || $_FILES["foto"]["type"] !== "image/png") { 
+            echo "<script>alert('Imagem não suportada');</script>";
+            exit;
+        }
+
     
 
         $insere = "INSERT INTO usuarios (nome, cpf, email, nasc, sexo, senha) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha')";
 
         $result_insere = mysqli_query($con,$insere);
+
 
         if ($result_insere) {
             $file_name = $_FILES['foto']['name'];
@@ -119,7 +129,7 @@ if(@$_REQUEST['botao']){
             $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
             mysqli_query($con, $update);
 
-            echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Login.php');</script>";
+            echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Home.php');</script>";
         }
 
     } 
@@ -129,6 +139,8 @@ if(@$_REQUEST['botao']){
             echo "<script>alert('$mensagem');</script>";
         }
     }
+    
+    
 
 ?>
 </body>

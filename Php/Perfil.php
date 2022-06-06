@@ -2,6 +2,10 @@
     include('conexao.php');
     include('sqlFunctions.php');
     //include('verifica.php');    
+
+    $id = @$_GET['id'];
+
+   
 ?>
 
 <!DOCTYPE html>
@@ -18,27 +22,32 @@
     <title>Meu Perfil</title>
 </head>
 <body>
+<?php
+    $select =  "SELECT * from usuarios WHERE id = '{$id}'";
+    $query = mysqli_query($con, $select);
+
+    while($sql=mysqli_fetch_assoc($query)) { ?>
     <div class="profile-wrapper">
         <div class="profile-image-wrapper">
-            <img src="../images/kill-em-all.jpg" onerror="this.className='image-error'; this.src='../images/no-foto.svg';" alt="imagem">
+            <img src="<?php echo $sql['foto']?>" onerror="this.className='image-error'; this.src='../images/no-foto.svg';" alt="imagem">
         </div>
-        <form action="#" method="POST">
+        <form action="#" method="POST" enctype="multipart/form-data">
         <div class="input-login-wrapper register-input">
             <div class="input-login">
                 <span>Email</span>
-                <input type="email" name="email" value="" required>
+                <input type="email" name="email" value="<?php echo $sql['email']?>" required>
             </div>         
         </div>
         <div class="input-login-wrapper register-input">
             <div class="input-login">
                 <span>Foto</span>
-                <input type="file" name="email" value="" required>
+                <input type="file"required>
             </div>         
         </div>
         <div class="input-login-wrapper register-input">
             <div class="input-login">
                 <span>Senha:</span>
-                <input type="password" name="senha" value="" required>
+                <input type="password" name="senha" value="">
             </div>         
         </div>
         <div class="input-login-wrapper input-submit-login">
@@ -48,5 +57,36 @@
         </div>
     </form>
     </div>
+
+    <?php }
+
+if(@$_REQUEST['botao'] == "Atualizar"){
+      @$senha = md5($_POST['senha']);
+    
+        $update = "UPDATE usuarios SET 
+        email = '{$_POST['email']}', 
+        senha = '{$senha}'
+        where id = '{$id}'";
+
+
+        $result_update = mysqli_query($con,$update);
+
+        if ($result_update) {
+            $file_name = $_FILES['foto']['name'];
+            $last_id = mysqli_insert_id($con);
+    
+            $nFt = $last_id;
+            $ext = '.png';
+            move_uploaded_file($_FILES['foto']['tmp_name'], 'images/'.$nFt.$ext);
+    
+            $nomeFoto = $nFt.$ext;
+    
+            $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = '{$last_id}' ";
+            mysqli_query($con, $update);
+
+            echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Home.php');</script>";
+        }
+}
+    ?>
 </body>
 </html>
