@@ -43,7 +43,7 @@
                     <input type="text" name="nome_artista" placeholder="Nome do artista" value="<?php echo @$_POST['nome_artista']?>">
                 </div><!--input-wrapper-pw-->
                 <div class="input-wrapper-pw">                    
-                    <input type="text" name="qtd_registros" placeholder="Quantidade de registros" value="<?php echo @$_POST['qtd_registros']?>">
+                    <input type="number" min="0" name="qtd_registros" placeholder="Quantidade de registros" value="<?php echo @$_POST['qtd_registros']?>">
                 </div><!--input-wrapper-pw-->                 
                 <div class="price-wrapper-pw">
                     <input type="number" min="0" name="valor_inicial" placeholder="Preço inicial">

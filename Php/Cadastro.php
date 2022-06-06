@@ -26,7 +26,7 @@
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Nome completo</span>
-                    <input type="text" name="nome" value="<?php echo @$_POST['nome']; ?>"required>
+                    <input type="text" name="nome" maxlength="35" value="<?php echo @$_POST['nome']; ?>"required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">
@@ -89,20 +89,6 @@
 <?php
 
 
-if (@$_REQUEST['id'] && !@$_REQUEST['botao'])
-{
-	$query = "
-		SELECT * FROM usuarios WHERE id=' {$_REQUEST['id']}'
-	";
-	$result = mysqli_query($con,$query);
-	$row = mysqli_fetch_assoc($result);
-	foreach( $row as $key => $value )
-	{
-		$_POST[$key] = $value;
-	}
-}
-
-
 if(@$_REQUEST['botao']){
 
     @$senha = md5(@$_POST['senha']);
@@ -114,26 +100,26 @@ if(@$_REQUEST['botao']){
   
     else if ($senha == $confirmasenha) {
     
-        $file_name = $_FILES['foto']['name'];
+        // $file_name = $_FILES['foto']['name'];
 
-        $milliseconds = round(microtime(true) * 1000);
-        $data = date("d-m-Y-g-h-s").$milliseconds;
+        // $milliseconds = round(microtime(true) * 1000);
+        // $data = date("d-m-Y-g-h-s").$milliseconds;
         
         
-        @$nFt = $data;
-        $nFt = str_replace('Array','', $nFt);
-        $ext = '.png';
+        // $nFt = $data;
+        // $nFt = str_replace('Array','', $nFt);
+        // $ext = '.png';
         
-        move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
-            $nome_Ft = 'teste/'.$nFt.$ext;
+        // move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
+        // $nome_Ft = 'teste/'.$nFt.$ext;
 
-        $insere = "INSERT INTO  usuarios (nome, cpf, email, nasc, sexo, senha, foto) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha','$nome_Ft')";
+        $insere = "INSERT INTO usuarios (nome, cpf, email, nasc, sexo, senha) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha')";
 
         $result_insere = mysqli_query($con,$insere);
 
-            if ($result_insere) {
-                echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Login.php');</script>";
-            }
+        if ($result_insere) {
+            echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Login.php');</script>";
+        }
 
     } 
 
@@ -142,8 +128,6 @@ if(@$_REQUEST['botao']){
             echo "<script>alert('$mensagem');</script>";
         }
     }
-    
-  
 
 ?>
 </body>

@@ -67,9 +67,11 @@
                     <span>Lançamento:</span>
                     <span><?php formataData($sql['Lancamento'])?></span>
                  </div>
-                 <div class="quantity-label">
+                 <div class="quantity-label container">
                     <span>Disponíveis:</span>
-                    <span><?php echo $sql['Qtd']?></span>
+                    <span><?php echo $sql['Qtd']?></span>   
+                    <span>Disponíveis:</span>
+                    <span><?php echo $sql['Qtd']?></span>                  
                  </div>
                  <form action="#" method="GET">
                     <div class="button-label">

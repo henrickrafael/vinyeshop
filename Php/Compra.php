@@ -80,6 +80,14 @@
                 
                     if(@$_REQUEST['botao']) {
 
+                        $qtd = $_POST['qtd'];
+                        $valor = $sql['Preco'];
+
+                        $total = ($qtd * $valor);
+                        echo $total;
+
+                        //INSERT em vendas
+                        
                     }
                 ?>
 

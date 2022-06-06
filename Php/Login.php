@@ -49,8 +49,8 @@
         </div>
     </div>
 
-    <?php 
-if(@$_REQUEST['botao'] == "Entrar"){
+<?php 
+    if(@$_REQUEST['botao'] == "Entrar"){
 
     @$email = @$_POST['email'];
     @$senha = md5($_POST['senha']);
