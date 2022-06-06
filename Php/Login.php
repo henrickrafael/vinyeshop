@@ -2,6 +2,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
+    session_start();
 ?>
 <html lang="pt-br">
 <head>

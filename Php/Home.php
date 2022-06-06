@@ -1,6 +1,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
+    
 ?>
 
 <!DOCTYPE html>
