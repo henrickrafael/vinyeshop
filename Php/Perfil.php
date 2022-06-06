@@ -52,9 +52,14 @@
         <div class="input-login-wrapper input-submit-login">
             <div class="input-login">
                 <input id="btnCad" type="submit" name="botao" value="Atualizar">
-            </div>     
+            </div>    
         </div>
-    </form>
+        <div class="input-login-wrapper input-submit-login">
+            <div class="input-login profile-logout">
+                <a href="Logout.php">Sair</a>
+            </div>    
+        </div>
+        <form>   
     </div>
 
     <?php }
@@ -84,7 +89,7 @@ if(@$_REQUEST['botao'] == "Atualizar"){
             $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = '{$last_id}' ";
             mysqli_query($con, $update);
 
-            echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('Home.php');</script>";
+            echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
         }
 }
     ?>

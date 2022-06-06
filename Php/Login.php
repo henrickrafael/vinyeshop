@@ -64,7 +64,7 @@
         $_SESSION['nome_usuario'] = $row['nome'];
         $_SESSION['tipo_usuario'] = $row['tipo'];
     
-        header('Location:Home.php'); 
+        header('Location:HomeAuth.php'); 
 		exit; 
     }
    

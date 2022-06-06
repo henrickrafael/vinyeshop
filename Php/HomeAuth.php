@@ -1,6 +1,9 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
+    include('verifica.php');
+
+    $tipo_usr = $_SESSION['tipo_usuario'];
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +21,8 @@
 <body>
     <div class="top_menu">
         <div class="top_menu_item">
-            <span><a href="Login.php">Entrar</a></span>
-            <span><a href="Cadastro.php">Cadastre-se</a></span>            
+            <span><a href="Perfil.php">Meu perfil</a></span>
+            <span><a href="HomeAuth.php">Home</a></span>            
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <div class="hr"></div>
@@ -58,8 +61,7 @@
 
         <?php
             $select = 
-            "SELECT d.id as 'Id', d.nome as 'Disco', d.valor as 'Preco', d.foto as 'Foto', a.nome as 'Artista',
-            e.quantidade as 'Qtd'
+            "SELECT d.id as 'Id', d.nome as 'Disco', d.valor as 'Preco', d.foto as 'Foto', a.nome as 'Artista'
             FROM discos d 
             INNER JOIN artistas a on d.id_artista = a.id 
             INNER JOIN estoque e on d.id = e.id_discos 

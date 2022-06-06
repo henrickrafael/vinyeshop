@@ -3,6 +3,7 @@
     include('sqlFunctions.php');
     include('verifica.php');
     
+    $id_usr = $_SESSION['id_usuario'];
     $id = @$_GET['id'];
 
     if(!isset($id)) {
@@ -86,16 +87,16 @@
 
                         $total = ($qtd * $valor);
                         
-                        $insere = "INSERT INTO venda (id_discos, id_usuario, valor_total, data_compra, tipo_pagamento) values ('$id','1','$total',NOW(),'{$_POST['pgto']}')";
+                        $insere = "INSERT INTO venda (id_discos, id_usuario, valor_total, data_compra, tipo_pagamento) values ('$id','$id_usr','$total',NOW(),'{$_POST['pgto']}')";
                         $result_insere = mysqli_query($con,$insere);
                             
                         //IF de trava quantidade
-                        $update = "UPDATE estoque SET quantidade = (quantidade - '{$qtd}') WHERE id = '{$id}' ";
+                        $update = "UPDATE estoque SET quantidade = (quantidade - '{$qtd}') WHERE id_discos = '{$id}' ";
                         $result_update = mysqli_query($con,$update);
-                        
-
                       
-                        
+                        if($result_update) {
+                            echo "<script>alert('Compra realizada com sucesso!');top.location.href='HomeAuth.php';</script>"; 
+                        }
                     }
                 ?>
 

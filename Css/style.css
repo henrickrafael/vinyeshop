@@ -676,7 +676,8 @@ input[type="date"]:focus {
     margin-top: 2em;
     box-sizing: border-box;
     width: 60%;
-    height: 92%;
+    height: 47em;
+    margin-bottom: 4em;
     box-shadow: 3px 3px 14px -3px rgba(0,0,0,0.94); 
 }
 
@@ -707,4 +708,59 @@ input[type="date"]:focus {
 
 .profile-wrapper .input-login-wrapper input[type="submit"] {
     height: 85%;
+}
+
+.profile-logout {
+    padding-top: 1em;
+    text-align: center;
+}
+
+.profile-logout a {
+    text-decoration: none;
+    color: #262626;
+    font-weight: bolder;
+    font-size: larger;
+    font-family: 'Poppins', sans-serif;
+}
+.profile-logout a:hover {
+    text-decoration: underline;
+}
+
+.cad-disco {
+    height: 3em;
+    width: 63%;
+}
+
+.disco-form {
+    border: none;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.main-disco {
+    width: 50%;
+    height: fit-content;
+    margin-bottom: 4em;
+}
+
+.main-disco input[type="number"] {
+    -moz-appearance:textfield;
+    font-weight: lighter;
+}
+
+.cad-disco-btn {
+    height: 3.5em;
+    margin-bottom: 1em;
+}
+
+.cad-disco-btn input[type="submit"] {
+    font-size: larger;
+    color: white;
+    background-color: #262626;
+}
+
+.cad-disco-btn input[type="submit"]:hover {
+    background: #131313;
+    transition: 0.3s;
+    cursor: pointer;
 }
