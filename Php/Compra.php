@@ -1,7 +1,8 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-
+    include('verifica.php');
+    
     $id = @$_GET['id'];
 
     if(!isset($id)) {

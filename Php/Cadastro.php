@@ -2,6 +2,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
+    include('verifica.php');
 ?>
 
 <html lang="pt-br">
@@ -94,30 +95,31 @@ if(@$_REQUEST['botao']){
     @$senha = md5(@$_POST['senha']);
     @$confirmasenha = md5(@$_POST['confirma_senha']);
    
-    if ($senha == "d41d8cd98f00b204e9800998ecf8427e") {
-        $mensagem = "Senha não foi inserida!";
-    } 
-  
-    else if ($senha == $confirmasenha) {
+        //if ($senha == "d41d8cd98f00b204e9800998ecf8427e") {
+        //$mensagem = "Senha não foi inserida!";
     
-        // $file_name = $_FILES['foto']['name'];
-
-        // $milliseconds = round(microtime(true) * 1000);
-        // $data = date("d-m-Y-g-h-s").$milliseconds;
-        
-        
-        // $nFt = $data;
-        // $nFt = str_replace('Array','', $nFt);
-        // $ext = '.png';
-        
-        // move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
-        // $nome_Ft = 'teste/'.$nFt.$ext;
+  
+    if ($senha == $confirmasenha) {
+    
+    
 
         $insere = "INSERT INTO usuarios (nome, cpf, email, nasc, sexo, senha) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha')";
 
         $result_insere = mysqli_query($con,$insere);
 
         if ($result_insere) {
+            $file_name = $_FILES['foto']['name'];
+            $last_id = mysqli_insert_id($con);
+    
+            $nFt = $last_id;
+            $ext = '.png';
+            move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
+    
+            $nomeFoto = $nFt.$ext;
+    
+            $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
+            mysqli_query($con, $update);
+
             echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Login.php');</script>";
         }
 
