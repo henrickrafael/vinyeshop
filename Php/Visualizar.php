@@ -1,7 +1,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-
+    session_start();
     $id = @$_GET['id'];
 
     if(!isset($id)) {
@@ -81,10 +81,13 @@
                     <!-- <div class="price-wrapper-pw"> 
                         <input name="qtd" id="qtty" type="number" placeholder="Quantidade">
                     </div> -->
+                    <?php
+                    if(isset( $_SESSION['id_usuario'])){?>
                         <div class="input-wrapper-pw input-wrapper-submit-pw">
                             <!-- <input type="submit" name="botao" value="Comprar"> -->
                             <a id="buy" href="Compra.php?id=<?php echo $id ?>">Comprar</a>
                         </div>
+                    <?php } #Fim do iF ?>
                     </div>            
                 </form> 
             </div><!--product-description-->
