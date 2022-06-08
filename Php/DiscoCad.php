@@ -2,13 +2,8 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-    require('verifica.php');
+    
 
-    $tipo_usr = $_SESSION['tipo_usuario'];
-
-     if($tipo_usr <> 'A') {
-        echo "<script>window.location.replace('HomeAuth.php');</script>";
-     }
 
 ?>
 
@@ -112,57 +107,33 @@
 
 if(@$_REQUEST['botao']){
 
-    @$senha = md5(@$_POST['senha']);
-    @$confirmasenha = md5(@$_POST['confirma_senha']);
-   
-        //if ($senha == "d41d8cd98f00b204e9800998ecf8427e") {
-        //$mensagem = "Senha não foi inserida!";
-        
+    $insert = "INSERT INTO discos (nome, descricao, id_artista, lancamento, id_genero, valor, ativo)
+    VALUES ('{$_POST['nome']}', '{$_POST['desc']}', '{$_POST['artista']}', '{$_POST['lanc']}', '{$_POST['genero']}', '{$_POST['preco']}','S')";
 
-        if(validaCPF($_POST['cpf']) == false){
-            echo "<script>alert('Cpf invalido');</script>";
-            exit;
-        }
-
-    if ($senha == $confirmasenha) {
-
-        if( $_FILES["foto"]["type"] !== "image/png") { 
-            echo "<script>alert('Imagem não suportada');</script>";
-            exit;
-        }
-       
-        
-    
-
-        $insere = "INSERT INTO usuarios (nome, cpf, email, nasc, sexo, senha) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha')";
-
-        $result_insere = mysqli_query($con,$insere);
+    $sql = mysqli_query($con, $insert);
 
 
-        if ($result_insere) {
+        if ($sql) {
             $file_name = $_FILES['foto']['name'];
             $last_id = mysqli_insert_id($con);
-    
-            $nFt = $last_id;
+            $nome =@$_POST['nome'];
+
+            $nFt = $nome;
             $ext = '.png';
-            move_uploaded_file($_FILES['foto']['tmp_name'], 'teste/'.$nFt.$ext);
+            move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
     
-            $nomeFoto = $nFt.$ext;
+            $nomeFoto = '../images/'.$nFt.$ext;
     
-            $update = "UPDATE usuarios SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
+            $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
             mysqli_query($con, $update);
 
             echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Home.php');</script>";
         }
     }
 
-    else {
-            $mensagem = "As senhas não conferem!";
-            echo "<script>alert('$mensagem');</script>";
-        }
-   
-    }
     
+   
+ 
     
 
 ?>
