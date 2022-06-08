@@ -764,3 +764,7 @@ input[type="date"]:focus {
     transition: 0.3s;
     cursor: pointer;
 }
+
+.btn-disabled {
+    background-color: #4949497c !important  ;
+}

@@ -9,12 +9,15 @@ function checkSenha() {
     if(senha != cSenha) {
 
         btn.setAttribute("disabled", true);
+        btn.classList.add("btn-disabled");
+        msg.style.color = 'red';
         msg.innerText = "*As senhas precisam ser iguais!";
 
         console.log(senha.length)
     } else {
         msg.innerText = '';
         btn.removeAttribute("disabled");
+        btn.classList.remove("btn-disabled");
     }
 } 
 

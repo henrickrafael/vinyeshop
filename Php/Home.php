@@ -94,7 +94,7 @@
         while($sql=mysqli_fetch_array($query)) { ?> 
             <div class="product-wrapper">
                 <div class="image-wrapper">
-                    <img src="<?php echo $sql['Foto'] ?>" onerror="this.className='image-error'; this.src='../images/vinyl.svg'; " alt="Capa do disco">
+                    <img src="<?php echo $sql['Foto'] ?>" onerror="this.className='image-error'; this.src='../images/vinyl.svg';" alt="Capa do disco">
                 </div>
                 <div class="label-text-produto">
                     <span><?php echo $sql['Disco'] ?></span>
