@@ -2,8 +2,14 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
-    
+    require('verifica.php');
 
+    $tipo_usr = $_SESSION['tipo_usuario'];
+    if($tipo_usr <> 'A') {
+        echo "<script>window.location.replace('HomeAuth.php');</script>";
+     }
+     
+    $id = @$_GET['id'];
 
 ?>
 
@@ -19,6 +25,21 @@
     <script src="../JS/script.js"></script>
     <title>Cadastro de disco</title>
 </head>
+<?php
+
+if (isset($id) && !@$_REQUEST['botao'])
+{
+	$query = "
+		SELECT * FROM discos WHERE id=' {$id}'
+	";
+	$result = mysqli_query($con,$query);
+	$row = mysqli_fetch_assoc($result);
+	foreach( $row as $key => $value )
+	{
+		$_POST[$key] = $value;
+	}
+}
+?>
 <body>
     <div class="main-wrapper-register main-disco"><!--main-wrapper-register-->
         <div class="form-1 disco-form"><!--form-1-->
@@ -29,13 +50,13 @@
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Nome do disco</span>
-                    <input type="text" name="nome" maxlength="35" value="<?php echo @$_POST['nome']; ?>"required>
+                    <input type="text" name="nome" maxlength="35" value="<?php echo @$_POST['nome']; ?>" required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Descricao</span>
-                    <input type="text" name="desc" maxlength="11" value="<?php echo @$_POST['cpf']; ?>"required>
+                    <input type="text" name="desc" maxlength="11" value="<?php echo @$_POST['descricao']; ?>" required>
                 </div>         
             </div>        
             <div class="input-login-wrapper register-input cad-disco">
@@ -49,7 +70,7 @@
     
                         while($row = mysqli_fetch_array($query)) { ?>   
                         
-                        <option value="<?php echo $row['id']?>"> <?php echo $row['nome'] ?></option>
+                        <option value=<?php echo $row['id']?> <?php echo (@$_POST['id_artista'] == $row['id'] ? "selected" :""); ?>> <?php echo $row['nome'] ?></option>
                     <?php
                         }
                     ?>        
@@ -67,7 +88,7 @@
     
                         while($row = mysqli_fetch_array($query)) { ?>   
                         
-                        <option value="<?php echo $row['id']?>"> <?php echo $row['nome'] ?></option>
+                        <option value=<?php echo $row['id']?> <?php echo (@$_POST['id_genero'] == $row['id'] ? "selected" :""); ?>> <?php echo $row['nome'] ?></option>
                     <?php
                         }
                     ?>        
@@ -77,13 +98,13 @@
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Lançamento:</span>
-                    <input type="date" name="lanc" required>
+                    <input type="date" name="lanc" value="<?php echo @$_POST['lancamento']; ?>" required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Preço:</span>
-                    <input type="number" min="0" name="preco" placeholder="R$" required>
+                    <input type="number" min="0" name="preco" placeholder="R$" value="<?php echo @$_POST['valor']; ?>" required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">
@@ -103,38 +124,30 @@
         </form>      
     </div>
 <?php
-
-
-if(@$_REQUEST['botao']){
-
-    $insert = "INSERT INTO discos (nome, descricao, id_artista, lancamento, id_genero, valor, ativo)
-    VALUES ('{$_POST['nome']}', '{$_POST['desc']}', '{$_POST['artista']}', '{$_POST['lanc']}', '{$_POST['genero']}', '{$_POST['preco']}','S')";
-
-    $sql = mysqli_query($con, $insert);
-
-
-        if ($sql) {
-            $file_name = $_FILES['foto']['name'];
-            $last_id = mysqli_insert_id($con);
-            $nome =@$_POST['nome'];
-
-            $nFt = $nome;
-            $ext = '.png';
-            move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
     
-            $nomeFoto = '../images/'.$nFt.$ext;
-    
-            $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
-            mysqli_query($con, $update);
 
-            echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('Home.php');</script>";
-        }
+if(@$_REQUEST['botao'] ){
+
+    if (!@$_REQUEST['id']) {
+        insertDisco($con, $_POST['nome'], $_POST['desc'], $_POST['artista'], $_POST['lanc'], $_POST['genero'], $_POST['preco']);
+     }
+
+     else{
+        updateDisco($con, $id, $_POST['nome'], $_POST['desc'], $_POST['artista'], $_POST['lanc'], $_POST['genero'], $_POST['preco']);
     }
 
+
+     }
+
+
+
+
+
+    
     
    
- 
-    
+
+
 
 ?>
 </body>
