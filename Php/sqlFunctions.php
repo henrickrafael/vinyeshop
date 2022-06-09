@@ -6,31 +6,53 @@ function insertDisco($con, String $nome, String $descricao, Int $id_artista, Str
 
     $sql = mysqli_query($con, $insert);
     
-    if(!$sql) {
-        echo mysqli_error($con);
-    } else {
-        echo "Registro inserido com sucesso!";
-    }
+    if ($sql) {
+        //$file_name = $_FILES['foto']['name'];
+        $last_id = mysqli_insert_id($con);
+        $nome =@$_POST['nome'];
 
+        $nFt = $nome;
+        $ext = '.png';
+        move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
+
+        $nomeFoto = '../images/'.$nFt.$ext;
+
+        $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
+        mysqli_query($con, $update);
+
+        echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+    }
 }
 
-function insertUser($con, String $nome, String $descricao, Int $id_artista, String $lanc, Int $id_genero, Float $preco, ?String $foto) {
-    
-    $insert = "INSERT INTO discos (nome, descricao, id_artista, lancamento, id_genero, valor, foto, ativo)
-    VALUES ('{$nome}', '{$descricao}', '{$id_artista}', '{$lanc}', '{$id_genero}', '{$preco}', '{$foto}','S')";
 
-    $sql = mysqli_query($con, $insert);
+function updateDisco($con, Int $id, ?String $nome, ?String $descricao, ?Int $id_artista, ?String $lanc, ?Int $id_genero, ?Float $preco) {
+    $update = 
+    "UPDATE discos SET 
+    nome ='{$nome}', 
+    descricao = '{$descricao}', 
+    id_artista = '{$id_artista}', 
+    lancamento = '{$lanc}', 
+    id_genero = '{$id_genero}', 
+    valor = '{$preco}'
+    WHERE id = '{$id}'";
+
+    $sql = mysqli_query($con, $update);
     
-    if(!$sql) {
-        echo mysqli_error($con);
-    } else {
-        echo "Registro inserido com sucesso!";
+    if ($sql) {
+        //$file_name = $_FILES['foto']['name'];
+        $nome =@$_POST['nome'];
+
+        $nFt = $nome;
+        $ext = '.png';
+        move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
+
+        $nomeFoto = '../images/'.$nFt.$ext;
+
+        $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$id} ";
+        mysqli_query($con, $update);
+
+        echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
     }
-
-}
-
-function updateDisco() {
-
 }
 
 function validaDiscoAtivo($con, Int $id)  {
