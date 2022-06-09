@@ -25,13 +25,13 @@
             <div class="input-login-wrapper">
                 <div class="input-login">
                     <span>Email</span>
-                    <input type="email" name="email">
+                    <input type="email" name="email" required>
                 </div>         
             </div>
             <div class="input-login-wrapper input-password">
                 <div class="input-login">
                     <span>Senha</span>
-                    <input type="password" name="senha">
+                    <input type="password" name="senha" required>
                 </div>         
             </div>
             <div class="input-login-wrapper input-submit-login">
