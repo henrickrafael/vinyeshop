@@ -27,8 +27,7 @@
 </head>
 <?php
 
-if (isset($id) && !@$_REQUEST['botao'])
-{
+if (isset($id) && !@$_REQUEST['botao']) {
 	$query = "
 		SELECT * FROM discos WHERE id=' {$id}'
 	";
@@ -39,6 +38,7 @@ if (isset($id) && !@$_REQUEST['botao'])
 		$_POST[$key] = $value;
 	}
 }
+
 ?>
 <body>
     <div class="main-wrapper-register main-disco"><!--main-wrapper-register-->
@@ -117,10 +117,8 @@ if (isset($id) && !@$_REQUEST['botao'])
                 <div class="input-login">
                     <input type="submit" name="botao" value="Cadastrar">
                 </div>         
-            </div>
-            
+            </div>            
         </div>
-
         </form>      
     </div>
 <?php
@@ -130,24 +128,11 @@ if(@$_REQUEST['botao'] ){
 
     if (!@$_REQUEST['id']) {
         insertDisco($con, $_POST['nome'], $_POST['desc'], $_POST['artista'], $_POST['lanc'], $_POST['genero'], $_POST['preco']);
-     }
-
-     else{
+     } else{
         updateDisco($con, $id, $_POST['nome'], $_POST['desc'], $_POST['artista'], $_POST['lanc'], $_POST['genero'], $_POST['preco']);
     }
 
-
-     }
-
-
-
-
-
-    
-    
-   
-
-
+}
 
 ?>
 </body>

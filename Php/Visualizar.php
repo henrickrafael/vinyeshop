@@ -87,7 +87,11 @@
                             <!-- <input type="submit" name="botao" value="Comprar"> -->
                             <a id="buy" href="Compra.php?id=<?php echo $id ?>">Comprar</a>
                         </div>
-                    <?php } #Fim do iF ?>
+                    <?php } else { ?>
+                        <div class="quantity-label not-auth">
+                            <span>*Faça <a href="Login.php">login<a> ou <a href="Cadastro.php">Cadastre-se<a> para poder comprar este produto!</span>                
+                        </div>
+                    <?php } ?>    
                     </div>            
                 </form> 
             </div><!--product-description-->

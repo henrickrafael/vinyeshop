@@ -768,3 +768,11 @@ input[type="date"]:focus {
 .btn-disabled {
     background-color: #4949497c !important  ;
 }
+
+.cat-artist {
+    height: 70%;
+}
+
+.not-auth {
+    margin: 0;
+}

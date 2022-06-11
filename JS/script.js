@@ -31,7 +31,7 @@ function validateQtd() {
 
     if (qtdParse != 0 && (!isNaN(qtdParse))) {
         console.log(qtdParse + qtdParse);
-        field.innerText = `R$ ${(qtdParse * precoParse).toFixed(1)}`
+        field.innerText = `R$ ${(qtdParse * precoParse).toFixed(2)}`
     } else {
         console.log(`${qtdParse} -> não é um número`);
     }

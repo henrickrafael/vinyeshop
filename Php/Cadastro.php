@@ -94,10 +94,6 @@ if(@$_REQUEST['botao']){
     @$senha = md5(@$_POST['senha']);
     @$confirmasenha = md5(@$_POST['confirma_senha']);
    
-        //if ($senha == "d41d8cd98f00b204e9800998ecf8427e") {
-        //$mensagem = "Senha não foi inserida!";
-        
-
         if(validaCPF($_POST['cpf']) == false){
             echo "<script>alert('Cpf invalido');</script>";
             exit;
@@ -105,18 +101,22 @@ if(@$_REQUEST['botao']){
 
     if ($senha == $confirmasenha) {
 
-        if( $_FILES["foto"]["type"] !== "image/png") { 
+        $file_error = $_FILES["foto"]["error"];
+
+        /*O erro 4 se refere ao erro informado pelo $_FILES quando nenhum aquivo é selecionado e por se tratar de um Array não há como verificar
+        se ele está vazio ou não, pois sempre haverá valores dentro dele. O isset também não funcionou, pois ao realizar o REQUEST ele é setado 
+        de qualquer forma.*/
+
+        if(($file_error <> 4) && $_FILES["foto"]["type"] !== "image/png") { 
             echo "<script>alert('Imagem não suportada');</script>";
             exit;
-        }
-       
-        
-    
+        } 
 
-        $insere = "INSERT INTO usuarios (nome, cpf, email, nasc, sexo, senha) values ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha')";
+        $insere = 
+        "INSERT INTO usuarios (nome, cpf, email, nasc, sexo, senha, tipo) 
+         VALUES ('{$_POST['nome']}','{$_POST['cpf']}','{$_POST['email']}','{$_POST['nasc']}','{$_POST['sexo']}','$senha', 'U')";
 
         $result_insere = mysqli_query($con,$insere);
-
 
         if ($result_insere) {
             $file_name = $_FILES['foto']['name'];

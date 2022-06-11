@@ -21,8 +21,17 @@
 <body>
     <div class="top_menu">
         <div class="top_menu_item">
-            <span><a href="Perfil.php">Meu perfil</a></span>
-            <span><a href="HomeAuth.php">Home</a></span>            
+        <span><a href="Perfil.php">Meu perfil</a></span>
+        <?php
+            if($tipo_usr == 'A') { ?>    
+            <span><a href="#">Painel de controle</a></span>
+        <?php
+            } else {
+        ?>          
+        <span><a href="HomeAuth.php">Home</a></span> 
+        <?php
+            }
+        ?>
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <div class="hr"></div>
