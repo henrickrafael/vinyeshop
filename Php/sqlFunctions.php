@@ -15,12 +15,16 @@ function insertDisco($con, String $nome, String $descricao, Int $id_artista, Str
         $ext = '.png';
         move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
 
-        $nomeFoto = '../images/'.$nFt.$ext;
+        $nomeFoto = '../images/'.$nFt.$last_id.$ext;
 
         $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
         mysqli_query($con, $update);
 
+        $insert = "INSERT INTO estoque (id_discos, quantidade) VALUES ('{$last_id}', '0')";
+        $sql = mysqli_query($con, $insert);
+
         echo "<script>alert('Cadastro realizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+        
     }
 }
 
@@ -46,7 +50,7 @@ function updateDisco($con, Int $id, ?String $nome, ?String $descricao, ?Int $id_
         $ext = '.png';
         move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
 
-        $nomeFoto = '../images/'.$nFt.$ext;
+        $nomeFoto = '../images/'.$nFt.$id.$ext;
 
         $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$id} ";
         mysqli_query($con, $update);
@@ -115,5 +119,60 @@ function validaCPF($cpf) {
     }
     return true;
 }
+function insertArtista($con, String $nome, String $ativo) {
+    $insert = "INSERT INTO artistas (nome, ativo)
+    VALUES ('{$nome}', '{$ativo}')";
 
+    $sql = mysqli_query($con, $insert);
+   
+    echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
+
+function insertGenero($con, String $nome, String $ativo) {
+    $insert = "INSERT INTO genero (nome, ativo)
+    VALUES ('{$nome}', '{$ativo}')";
+
+    $sql = mysqli_query($con, $insert);
+   
+    echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
+
+function updateGenero($con, Int $id, String $nome, String $ativo) {
+    $update = 
+    "UPDATE genero SET 
+    nome ='{$nome}', 
+    ativo = '{$ativo}'
+    WHERE id = '{$id}'";
+
+$sql = mysqli_query($con, $update);
+
+   
+    echo "<script>alert('Genero atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
+
+function updateArtista($con, Int $id, String $nome, String $ativo) {
+    $update = 
+    "UPDATE artistas SET 
+    nome ='{$nome}', 
+    ativo = '{$ativo}'
+    WHERE id = '{$id}'";
+
+$sql = mysqli_query($con, $update);
+
+   
+    echo "<script>alert('Artista atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
+
+function updateEstoque($con, Int $id, String $qtd) {
+    
+    $update = 
+    "UPDATE estoque SET  
+    quantidade = '{$qtd}'
+    WHERE id_discos = '{$id}'";
+
+$sql = mysqli_query($con, $update);
+
+   
+    echo "<script>alert('Estoque atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
 ?>

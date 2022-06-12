@@ -21,36 +21,50 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../Css/style.css">
-    <title>Cadastro de gêneros e artistas</title>
+    <title>Editar estoque</title>
 </head>
 <body>
+
+<?php
+
+if (isset($id) && !@$_REQUEST['botao']) {
+	
+    $select = 
+    "SELECT d.id as 'Id', d.nome as 'Disco', e.quantidade as 'Qtd'
+        FROM discos d 
+        INNER JOIN estoque e on d.id = e.id_discos 
+        WHERE d.id=' {$id}'";
+
+	$result = mysqli_query($con,$select);
+    
+	$row = mysqli_fetch_assoc($result);
+	
+    foreach( $row as $key => $value )
+	{
+		$_POST[$key] = $value;
+	}
+}
+
+?>
 
     <div class="main-wrapper-register main-disco cat-artist"><!--main-wrapper-register-->
         <div class="form-1 disco-form"><!--form-1-->
             <div class="label-header">
-                <h2>Cadastrar gênero ou artista</h2>
+                <h2>Editar estoque</h2>
             </div><!--label-header-->         
             <form action="#" method="POST" enctype="multipart/form-data">
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Nome</span>
-                    <input type="text" name="nome" maxlength="35" value="" required>
+                    <input type="text" name="nome" maxlength="35"  value="<?php echo @$_POST['Disco']; ?>" required>
                 </div>         
-            </div>              
-            <div class="input-login-wrapper register-input cad-disco">
-                <select name="tipo">                             
-                    <option value="" disabled selected>Tipo do cadastro</option>
-                    <option value="1">Artista</option>
-                    <option value="2">Gênero</option>                    
-                </select>       
-            </div>        
-            <div class="input-login-wrapper register-input cad-disco">
-                <select name="situacao">                             
-                    <option value="" disabled selected>Situação do cadastro</option>
-                    <option value="S">Ativo</option>
-                    <option value="N">Inativo</option>                    
-                </select>       
-            </div>                       
+            </div>                 
+            <div class="input-login-wrapper register-input">
+            <div class="input-login">
+                <span>Quatidade</span>
+                    <input type="text" name="quantidade" maxlength="35"  value="<?php echo @$_POST['Qtd']; ?>" required>
+                </div> 
+            </div>                     
             <div class="input-login-wrapper register-input cad-disco-btn">
                 <div class="input-login">
                     <input type="submit" name="botao" value="Cadastrar">
@@ -62,19 +76,8 @@
 
     <?php
     if (@$_REQUEST['botao']){
-
-        if(@$_POST['tipo'] == 1){
-
-        insertArtista($con, $_POST['nome'], $_POST['situacao']);
-        }
-
-        else if(@$_POST['tipo'] == 2){
-            insertGenero($con, $_POST['nome'], $_POST['situacao']);
-        }
+        updateEstoque($con, $id, $_POST['quantidade']);    
     }
-
-    
-
-?>
+    ?>
 </body>
 </html>
