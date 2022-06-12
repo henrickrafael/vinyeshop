@@ -115,5 +115,47 @@ function validaCPF($cpf) {
     }
     return true;
 }
+function insertArtista($con, String $nome, String $ativo) {
+    $insert = "INSERT INTO artistas (nome, ativo)
+    VALUES ('{$nome}', '{$ativo}')";
 
+    $sql = mysqli_query($con, $insert);
+   
+    echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
+
+function insertGenero($con, String $nome, String $ativo) {
+    $insert = "INSERT INTO genero (nome, ativo)
+    VALUES ('{$nome}', '{$ativo}')";
+
+    $sql = mysqli_query($con, $insert);
+   
+    echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
+
+function updateGenero($con, Int $id, String $nome, String $ativo) {
+    $update = 
+    "UPDATE genero SET 
+    nome ='{$nome}', 
+    ativo = '{$ativo}'
+    WHERE id = '{$id}'";
+
+$sql = mysqli_query($con, $update);
+
+   
+    echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
+
+function updateArtista($con, Int $id, String $nome, String $ativo) {
+    $update = 
+    "UPDATE artistas SET 
+    nome ='{$nome}', 
+    ativo = '{$ativo}'
+    WHERE id = '{$id}'";
+
+$sql = mysqli_query($con, $update);
+
+   
+    echo "<script>alert('Cadastro atualizado com sucesso'); window.location.replace('HomeAuth.php');</script>";
+}
 ?>

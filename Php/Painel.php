@@ -49,7 +49,7 @@
             </a>
         </div>
         <div class="panel-option-item">
-            <a href="DiscoCad.php">
+            <a href="GeneroArtistaCad.php">
                 <img src="../images/artist_gen.svg">
                 <div class="text-container">
                     <span>Cadastrar artista/gênero</span>

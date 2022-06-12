@@ -24,7 +24,7 @@
         <span><a href="Perfil.php">Meu perfil</a></span>
         <?php
             if($tipo_usr == 'A') { ?>    
-            <span><a href="#">Painel de controle</a></span>
+            <span><a href="Painel.php">Painel de controle</a></span>
         <?php
             } else {
         ?>          
