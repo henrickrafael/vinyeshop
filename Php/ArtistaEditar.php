@@ -55,7 +55,8 @@ if (isset($id) && !@$_REQUEST['botao']) {
                 </div>         
             </div>              
             <div class="input-login-wrapper register-input cad-disco">
-                <select name="situacao">                             
+                <select name="situacao">   
+                <span>Situação</span>                             
                 <option value="S" <?php echo (@$_POST['ativo'] == "S" ? " selected" : "");?> >Ativo</option>
                     <option value="N" <?php echo (@$_POST['ativo'] == "N" ? " selected" : "");?> >Inativo</option>                    
                 </select>       
