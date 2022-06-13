@@ -1,0 +1,6 @@
+Venda;Disco;Gênero;Cliente;Sexo;Quantidade;Total;Data;Pagamento
+17;In utero;Grunge;Marcel Eshi;Masculino;2;99.80;2022-06-13;Cartão
+18;Come Whatever;Trash Metal;Marcel Eshi;Masculino;1;40.00;2022-06-13;Boleto
+19;Supercombo;Indie;Marcel Eshi;Masculino;3;30.00;2022-06-13;Cartão
+20;Kill Em All;Trash Metal;Lucas;Masculino;2;109.60;2022-06-13;Cartão
+21;Ever End;Pop;Marcel Eshi;Masculino;9;180.00;2022-06-13;Boleto

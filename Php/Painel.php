@@ -34,7 +34,7 @@
     </div>
     <div class="panel-manual-wrapper">
         <div class="manual-item">
-            <a href="" target="_blank">Manual do sistema</a>
+            <a href="../images/manual.pdf" target="_blank">Manual do sistema</a>
         </div>
     </div>
     <div class="panel-option-wrapper">
@@ -56,7 +56,7 @@
             </a>
         </div>
         <div class="panel-option-item">
-            <a href="ArtistaEditar.php">
+            <a href="GeneroArtistaCad.php">
                 <img src="../images/artist_gen.svg">
                 <div class="text-container">
                     <span>Cadastrar artista</span>
@@ -72,7 +72,7 @@
             </a>
         </div>
         <div class="panel-option-item">
-            <a href="GeneroEditar.php">
+            <a href="GeneroArtistaCad.php">
                 <img src="../images/genre.svg">
                 <div class="text-container">
                     <span>Cadastro de gêneros</span>

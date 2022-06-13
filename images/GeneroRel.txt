@@ -1,5 +1,6 @@
 Nome;Situação
-Grunge;Inativo
+Grunge;Ativo
 Trash Metal;Ativo
 Eletronica;Ativo
-Indie;Inativo
+Indie;Ativo
+Pop;Ativo

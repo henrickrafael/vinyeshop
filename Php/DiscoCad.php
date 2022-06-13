@@ -88,7 +88,7 @@ if (isset($id) && !@$_REQUEST['botao']) {
     
                         while($row = mysqli_fetch_array($query)) { ?>   
                         
-                        <option value=<?php echo $row['id']?> <?php echo (@$_POST['id_genero'] == $row['id'] ? "selected" :""); ?>> <?php echo $row['nome'] ?></option>
+                        <option value=<?php echo $row['id']?> <?php echo (@$_POST['id_genero'] == $row['id'] ? "selected" : ""); ?>> <?php echo $row['nome'] ?></option>
                     <?php
                         }
                     ?>        
