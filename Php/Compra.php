@@ -87,7 +87,10 @@
 
                         $total = ($qtd * $valor);
                         
-                        $insere = "INSERT INTO venda (id_discos, id_usuario, valor_total, data_compra, tipo_pagamento) values ('$id','$id_usr','$total',NOW(),'{$_POST['pgto']}')";
+                        $insere = 
+                        "INSERT INTO venda (id_discos, id_usuario, valor_total, data_compra, tipo_pagamento, qtd) 
+                         VALUES ('$id','$id_usr','$total',NOW(),'{$_POST['pgto']}', '$qtd')";
+
                         $result_insere = mysqli_query($con,$insere);
                             
                         //IF de trava quantidade

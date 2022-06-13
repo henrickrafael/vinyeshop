@@ -7,7 +7,7 @@
     $tipo_usr = $_SESSION['tipo_usuario'];
     if($tipo_usr <> 'A') {
         echo "<script>window.location.replace('HomeAuth.php');</script>";
-     }
+    }
      
     $id = @$_GET['id'];
 
@@ -56,7 +56,7 @@ if (isset($id) && !@$_REQUEST['botao']) {
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Descricao</span>
-                    <input type="text" name="desc" maxlength="11" value="<?php echo @$_POST['descricao']; ?>" required>
+                    <input type="text" name="desc" maxlength="50" value="<?php echo @$_POST['descricao']; ?>" required>
                 </div>         
             </div>        
             <div class="input-login-wrapper register-input cad-disco">
@@ -104,7 +104,7 @@ if (isset($id) && !@$_REQUEST['botao']) {
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Preço:</span>
-                    <input type="number" min="0" name="preco" placeholder="R$" value="<?php echo @$_POST['valor']; ?>" required>
+                    <input type="number" min="0" step="0.01" name="preco" placeholder="R$" value="<?php echo @$_POST['valor']; ?>" required>
                 </div>         
             </div>
             <div class="input-login-wrapper register-input">

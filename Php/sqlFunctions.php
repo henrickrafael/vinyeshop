@@ -72,6 +72,18 @@ function validaDiscoAtivo($con, Int $id)  {
 
 }    
 
+function validaEstoque($con, Int $id) {
+    $select = "SELECT quantidade FROM estoque WHERE id_discos = {$id} ";
+    $query = mysqli_query($con, $select);
+
+    $result = mysqli_fetch_assoc($query);
+    $rlt = implode(",",$result);
+
+    if($rlt <= 0) {
+        echo "<script>window.location.replace('Home.php');</script>";
+    } 
+}
+
 function formataData($data) {
 
     $data = explode("-", $data);
@@ -81,7 +93,7 @@ function formataData($data) {
 }
 
 function deleteDisco($con,Int $id) {
-    $delete = "DELETE FROM disco WHERE id = '{$id}' ";
+    $delete = "UPDATE discos SET ativo = 'N' WHERE id = '{$id}' ";
     $sql = mysqli_query($con, $delete);
 
     if(!$sql) {

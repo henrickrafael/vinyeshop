@@ -27,7 +27,7 @@
     </div>
     <div class="panel-manual-wrapper">
         <div class="manual-item">
-            <a href="#">Manual do sistema</a>
+            <a href="" target="_blank">Manual do sistema</a>
         </div>
     </div>
     <div class="panel-option-wrapper">
@@ -41,7 +41,7 @@
             </a>
         </div>
         <div class="panel-option-item">
-            <a href="DiscoCad.php">
+            <a href="DiscoRel.php">
                 <img src="../images/rel_vinyl.svg">
                 <div class="text-container">
                     <span>Relatório de discos</span>
@@ -49,7 +49,7 @@
             </a>
         </div>
         <div class="panel-option-item">
-            <a href="GeneroArtistaCad.php">
+            <a href="ArtistaEditar.php">
                 <img src="../images/artist_gen.svg">
                 <div class="text-container">
                     <span>Cadastrar artista/gênero</span>

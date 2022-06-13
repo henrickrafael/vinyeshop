@@ -9,6 +9,7 @@
     }
 
     validaDiscoAtivo($con, $id);
+    validaEstoque($con, $id);
 ?>
 
 <!DOCTYPE html>
