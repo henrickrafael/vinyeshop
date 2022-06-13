@@ -1,0 +1,5 @@
+Nome;Situação
+Grunge;Inativo
+Trash Metal;Ativo
+Eletronica;Ativo
+Indie;Inativo

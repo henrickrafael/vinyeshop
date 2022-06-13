@@ -23,7 +23,8 @@
     <div class="top_menu">
         <div class="top_menu_item"> 
         <span><a href="Painel.php">Painel de controle</a></span>      
-        <span><a href="HomeAuth.php">Home</a></span>        
+        <span><a href="HomeAuth.php">Home</a></span>  
+        <span><a href="Logout.php">Sair</a></span>       
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <form action="#" method="POST">
@@ -102,6 +103,11 @@
         </div>
         
         <?php
+
+            $handle = fopen("../images/DiscoRel.txt", "w+");
+            $expo = "Disco;Artista;Gênero;Quantidade;Preço;Situação\n";
+            fwrite($handle, $expo);
+
             $select = 
             "SELECT d.id as 'Id', d.nome as 'Disco', d.valor as 'Preco', 
              IF(d.ativo = 'S', 'Ativo', 'Inativo') as 'Ativo', 
@@ -174,6 +180,14 @@
             </div>
         </div>
         <?php
+         
+         $expo = $sql['Disco'].";".$sql['Artista'].";".$sql['Genero'].";". $sql['Qtd'].";".$sql['Preco'].";".$sql['Ativo']."\n";
+         fwrite($handle, $expo);
+             }
+ 
+             if(@$_REQUEST['botao'] == "Exportar"){
+                 fclose($handle);
+                 echo "<script>alert('Arquivo gerado com sucesso'); window.location.replace('HomeAuth.php');</script>";
             }
         ?>
     </div>

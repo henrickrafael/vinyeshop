@@ -32,6 +32,7 @@
         <?php
             }
         ?>
+        <span><a href="Logout.php">Sair</a></span> 
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <div class="hr"></div>

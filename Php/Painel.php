@@ -21,6 +21,7 @@
         <div class="top_menu_item">
             <span><a href="Perfil.php">Meu perfil</a></span>            
             <span><a href="HomeAuth.php">Home</a></span> 
+            <span><a href="Logout.php">Sair</a></span> 
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <div class="panel-header">
@@ -58,7 +59,7 @@
             </a>
         </div>        
         <div class="panel-option-item">
-            <a href="DiscoCad.php">
+            <a href="ArtistaRel.php">
                 <img src="../images/rel_cad-artist.svg">
                 <div class="text-container">
                     <span>Relatório de artista</span>
@@ -74,7 +75,7 @@
             </a>
         </div>
         <div class="panel-option-item">
-            <a href="DiscoCad.php">
+            <a href="GeneroRel.php">
                 <img src="../images/genre_list.svg">
                 <div class="text-container">
                     <span>Relatório de gêneros</span>
