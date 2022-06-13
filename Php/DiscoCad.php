@@ -41,13 +41,6 @@ if (isset($id) && !@$_REQUEST['botao']) {
 
 ?>
 <body>
-<div class="top_menu">
-        <div class="top_menu_item"> 
-        <span><a href="Painel.php">Painel de controle</a></span>      
-        <span><a href="HomeAuth.php">Home</a></span>    
-        <span><a href="Logout.php">Sair</a></span>     
-        </div> <!--top_menu_item-->
-    </div> <!--top_menu -->
     <div class="main-wrapper-register main-disco"><!--main-wrapper-register-->
         <div class="form-1 disco-form"><!--form-1-->
             <div class="label-header">

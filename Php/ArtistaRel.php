@@ -24,7 +24,6 @@
         <div class="top_menu_item"> 
         <span><a href="Painel.php">Painel de controle</a></span>      
         <span><a href="HomeAuth.php">Home</a></span>     
-        <span><a href="Logout.php">Sair</a></span>    
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <form action="#" method="POST">
@@ -70,9 +69,9 @@
         </div>
         
         <?php
-         $handle = fopen("../images/ArtistaRel.txt", "w+");
-         $expo = "Nome;Situação\n";
-         fwrite($handle, $expo);
+            $handle = fopen("../images/ArtistaRel.txt", "w+");
+            $expo = "Nome;Situação\n";
+            fwrite($handle, $expo);
 
             $select = "SELECT a.id as 'Id', a.nome as 'Nome', IF(a.ativo = 'S', 'Ativo', 'Inativo') as 'Situacao'
             FROM artistas a WHERE a.id > 0";

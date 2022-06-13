@@ -1021,7 +1021,12 @@ input[type="date"]:focus {
         display: none;
     }
 
-    .data-genre {
+    .data-genre, .r {
         font-size: small !important;
+    }
+
+    .data-qtd a{
+        text-decoration: none;
+        color: #131313;
     }
 }

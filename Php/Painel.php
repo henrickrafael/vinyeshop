@@ -2,6 +2,12 @@
     include('conexao.php');
     include('sqlFunctions.php');
     include('verifica.php');
+
+    $tipo_usr = $_SESSION['tipo_usuario'];
+    
+    if($tipo_usr <> 'A') {
+        echo "<script>window.location.replace('HomeAuth.php');</script>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +27,6 @@
         <div class="top_menu_item">
             <span><a href="Perfil.php">Meu perfil</a></span>            
             <span><a href="HomeAuth.php">Home</a></span> 
-            <span><a href="Logout.php">Sair</a></span> 
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <div class="panel-header">
@@ -67,7 +72,7 @@
             </a>
         </div>
         <div class="panel-option-item">
-            <a href="DiscoCad.php">
+            <a href="GeneroEditar.php">
                 <img src="../images/genre.svg">
                 <div class="text-container">
                     <span>Cadastro de gêneros</span>
@@ -91,7 +96,7 @@
             </a>
         </div> -->
         <div class="panel-option-item">
-            <a href="DiscoCad.php">
+            <a href="Vendas.php">
                 <img src="../images/sales.svg">
                 <div class="text-container">
                     <span>Relatório de vendas</span>

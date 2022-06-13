@@ -16,13 +16,6 @@
     <title>Login</title>
 </head>
 <body>
-<div class="top_menu">
-        <div class="top_menu_item">
-            <span><a href="Login.php">Entrar</a></span>
-            <span><a href="Cadastro.php">Cadastre-se</a></span> 
-            <span><a href="Home.php">Home</a></span>            
-        </div> <!--top_menu_item-->
-    </div> <!--top_menu -->
     <div class="main-login-wrapper">
         <div class="main-login">
             <div class="login-label">

@@ -3,6 +3,12 @@
     include('sqlFunctions.php');
     include('verifica.php');
 
+    $tipo_usr = $_SESSION['tipo_usuario'];
+    
+    if($tipo_usr <> 'A') {
+        echo "<script>window.location.replace('HomeAuth.php');</script>";
+    }
+
     $id = @$_GET['id'];
 
 ?>
@@ -24,7 +30,6 @@
         <div class="top_menu_item"> 
         <span><a href="Painel.php">Painel de controle</a></span>      
         <span><a href="HomeAuth.php">Home</a></span>   
-        <span><a href="Logout.php">Sair</a></span>      
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <form action="#" method="POST">

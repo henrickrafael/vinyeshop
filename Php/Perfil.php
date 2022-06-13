@@ -21,18 +21,6 @@
     <title>Meu Perfil</title>
 </head>
 <body>
-<div class="top_menu">
-        <div class="top_menu_item">            
-            
-        <span><a href="HomeAuth.php">Home</a></span> 
-        <?php if($tipo_usr == 'A') { ?>    
-            <span><a href="Painel.php">Painel de controle</a></span>
-            <?php
-            } 
-        ?>  
-            <span><a href="Logout.php">Sair</a></span> 
-        </div> <!--top_menu_item-->
-    </div> <!--top_menu -->
 <?php
     $select =  "SELECT * from usuarios WHERE id = '{$id}'";
     $query = mysqli_query($con, $select);
@@ -68,7 +56,7 @@
         </div>
         <div class="input-login-wrapper input-submit-login">
             <div class="input-login profile-logout">
-                <a href="Painel.php">Sair</a>
+                <a href="Logout.php">Sair</a>
             </div>    
         </div>
         <form>   

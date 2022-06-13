@@ -3,6 +3,12 @@
     include('sqlFunctions.php');
     include('verifica.php');
 
+    $tipo_usr = $_SESSION['tipo_usuario'];
+    
+    if($tipo_usr <> 'A') {
+        echo "<script>window.location.replace('HomeAuth.php');</script>";
+    }
+
     $id = @$_GET['id'];
 
 ?>
@@ -24,7 +30,6 @@
         <div class="top_menu_item"> 
         <span><a href="Painel.php">Painel de controle</a></span>      
         <span><a href="HomeAuth.php">Home</a></span>  
-        <span><a href="Logout.php">Sair</a></span>       
         </div> <!--top_menu_item-->
     </div> <!--top_menu -->
     <form action="#" method="POST">
@@ -157,7 +162,7 @@
             <div class="data-row data-genre">
                 <span><?php echo $sql['Genero'] ?></span>
             </div>
-            <div class="data-row">
+            <div class="data-row data-qtd">
                 <span><a href="EstoqueEditar.php?id=<?php echo $sql['Id'] ?>">
                     <?php echo $sql['Qtd'] ?></span>
                 </a>
@@ -183,6 +188,7 @@
          
          $expo = $sql['Disco'].";".$sql['Artista'].";".$sql['Genero'].";". $sql['Qtd'].";".$sql['Preco'].";".$sql['Ativo']."\n";
          fwrite($handle, $expo);
+         
              }
  
              if(@$_REQUEST['botao'] == "Exportar"){
