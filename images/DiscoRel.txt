@@ -1,0 +1,8 @@
+Disco;Artista;Gênero;Quantidade;Preço;Situação
+In utero;Nirvana;Grunge;7;49.90;Ativo
+Nevermind;Nirvana;Grunge;3;19.90;Ativo
+Come What(ever) May;Stone Sour;Grunge;20;40.00;Ativo
+Kill Em All;Metallica;Trash Metal;4;54.80;Ativo
+Frog ;Stone Sour;Trash Metal;30;80.00;Ativo
+Iron Maiden;Metallica;Trash Metal;10;100.00;Ativo
+Supercombo;Supercombo;Indie;10;10.00;Ativo
