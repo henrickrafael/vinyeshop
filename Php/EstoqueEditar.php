@@ -56,7 +56,7 @@ if (isset($id) && !@$_REQUEST['botao']) {
             <div class="input-login-wrapper register-input">
                 <div class="input-login">
                     <span>Nome</span>
-                    <input type="text" name="nome" maxlength="35"  value="<?php echo @$_POST['Disco']; ?>" required>
+                    <input type="text" name="nome" maxlength="35"  value="<?php echo @$_POST['Disco']; ?>" readonly>
                 </div>         
             </div>                 
             <div class="input-login-wrapper register-input">

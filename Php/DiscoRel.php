@@ -1,6 +1,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
+    include('verifica.php');
 
     $id = @$_GET['id'];
 
@@ -45,18 +46,18 @@
             <div class="rel-d-input-wrapper">
                 <select name="ordenacao">
                     <option value="" disabled selected>Odernar por</option>
-                    <option value="1">Ordenação padrão</option>
-                    <option value="2">Nome do disco</option>
-                    <option value="3">Artista</option>
-                    <option value="4">Gênero</option>
+                    <option value="">Ordenação padrão</option>
+                    <option value="1">Nome do disco</option>
+                    <option value="2">Artista</option>
+                    <option value="3">Gênero</option>
                 </select>
             </div>
             <div class="rel-d-input-wrapper">
                 <select name="situacao">
                     <option value="" disabled selected>Situação</option>
-                    <option value="1">Ambos</option>
-                    <option value="2">Ativo</option>
-                    <option value="3">Inativo</option>
+                    <option value="">Ambos</option>
+                    <option value="S">Ativo</option>
+                    <option value="N">Inativo</option>
                 </select>
             </div>
         </div> <!-- rel-filter-wrapper -->
@@ -113,15 +114,29 @@
 
             if(@$_REQUEST['botao'] == "Pesquisar" && isset($_POST['ordenacao'])) {
                 switch ($_POST['ordenacao']) {
-                    #Case = 1 -> Ordenação padrão, ou seja a ordem do banco mesmo como está, não precisa de alteração
+                    #Case = 1 -> Nome do disco
                     case "1":
-                        $select .= ' ';
+                        $select .= ' ORDER BY d.nome';
                         $select .= ($_POST['lmt'] ? " LIMIT {$_POST['lmt']} " : "");
                         break;
-                    #Case = 2 -> Nome do disco    
+                    #Case = 2 -> Nome do artista    
                     case "2":
-            } #Switch
-        }# Fim do IF
+                        $select .= ' ORDER BY a.nome';
+                        $select .= ($_POST['lmt'] ? " LIMIT {$_POST['lmt']} " : "");
+                        break;
+                    #Case = 2 -> Nome do gênero    
+                    case "3":
+                        $select .= ' ORDER BY g.nome';
+                        $select .= ($_POST['lmt'] ? " LIMIT {$_POST['lmt']} " : "");
+                        break;    
+                } #Switch
+            } elseif(@$_REQUEST['botao'] == "Pesquisar") { 
+                $select .= ($_POST['nome'] ? " AND d.nome LIKE '%{$_POST['nome']}%' " : "");
+                $select .= ($_POST['artista'] ? " AND a.nome LIKE '%{$_POST['artista']}%' " : "");
+                $select .= ($_POST['genero'] ? " AND g.nome LIKE '%{$_POST['genero']}%' " : "");
+                $select .= (@$_POST['situacao'] ? " AND d.ativo = '{$_POST['situacao']}' " : "");
+                $select .= ($_POST['lmt'] ? " LIMIT {$_POST['lmt']} " : "");
+            }
 
              $query = mysqli_query($con, $select);
              while($sql=mysqli_fetch_assoc($query)) { ?>
@@ -137,7 +152,9 @@
                 <span><?php echo $sql['Genero'] ?></span>
             </div>
             <div class="data-row">
-                <span><?php echo $sql['Qtd'] ?></span>
+                <span><a href="EstoqueEditar.php?id=<?php echo $sql['Id'] ?>">
+                    <?php echo $sql['Qtd'] ?></span>
+                </a>
             </div>
             <div class="data-row">
                 <span>R$ <?php echo $sql['Preco'] ?></span>

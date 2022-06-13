@@ -104,6 +104,30 @@ function deleteDisco($con,Int $id) {
 
 }
 
+function deleteGenero($con,Int $id) {
+    $delete = "UPDATE genero SET ativo = 'N' WHERE id = '{$id}' ";
+    $sql = mysqli_query($con, $delete);
+
+    if(!$sql) {
+        echo mysqli_error($con);
+    } else {
+        echo "Gênero removido com sucesso!";
+    }
+
+}
+
+function deleteArtista($con,Int $id) {
+    $delete = "UPDATE artistas SET ativo = 'N' WHERE id = '{$id}' ";
+    $sql = mysqli_query($con, $delete);
+
+    if(!$sql) {
+        echo mysqli_error($con);
+    } else {
+        echo "Artista removido com sucesso!";
+    }
+
+}
+
 
 function validaCPF($cpf) { 
     // Extrai somente os números

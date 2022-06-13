@@ -1,6 +1,7 @@
 <?php
     include('conexao.php');
     include('sqlFunctions.php');
+    include('verifica.php');
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +53,7 @@
             <a href="ArtistaEditar.php">
                 <img src="../images/artist_gen.svg">
                 <div class="text-container">
-                    <span>Cadastrar artista/gênero</span>
+                    <span>Cadastrar artista</span>
                 </div>
             </a>
         </div>        
@@ -60,18 +61,34 @@
             <a href="DiscoCad.php">
                 <img src="../images/rel_cad-artist.svg">
                 <div class="text-container">
-                    <span>Relatório de artista/gênero</span>
+                    <span>Relatório de artista</span>
                 </div>
             </a>
         </div>
         <div class="panel-option-item">
             <a href="DiscoCad.php">
-                <img src="../images/storage.svg">
+                <img src="../images/genre.svg">
                 <div class="text-container">
-                    <span>Estoque</span>
+                    <span>Cadastro de gêneros</span>
                 </div>
             </a>
         </div>
+        <div class="panel-option-item">
+            <a href="DiscoCad.php">
+                <img src="../images/genre_list.svg">
+                <div class="text-container">
+                    <span>Relatório de gêneros</span>
+                </div>
+            </a>
+        </div>
+        <!-- <div class="panel-option-item">
+            <a href="EstoqueEditar.php">
+                <img src="../images/storage.svg">
+                <div class="text-container">
+                    <span>Cadastrar estoque</span>
+                </div>
+            </a>
+        </div> -->
         <div class="panel-option-item">
             <a href="DiscoCad.php">
                 <img src="../images/sales.svg">

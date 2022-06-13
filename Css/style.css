@@ -1008,6 +1008,10 @@ input[type="date"]:focus {
     height: 100%;
 }
 
+.artist-filter {
+    height: 5em;
+}
+
 @media only print {
     .top_menu,
     .header,
