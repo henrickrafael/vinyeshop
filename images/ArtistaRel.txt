@@ -1,9 +1,2 @@
 Nome;Situação
-Nirvana;Ativo
-Metallica;Ativo
-Silverchair;Ativo
-Pearl Jam;Ativo
-Stone Sour;Ativo
-Tim Maia;Ativo
-Calos Maia;Ativo
-Supercombo;Ativo
+Link Parking;Ativo

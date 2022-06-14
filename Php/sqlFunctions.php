@@ -15,7 +15,7 @@ function insertDisco($con, String $nome, String $descricao, Int $id_artista, Str
         $ext = '.png';
         move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
 
-        $nomeFoto = '../images/'.$nFt.$last_id.$ext;
+        $nomeFoto = '../images/'.$nFt.$ext;
 
         $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$last_id} ";
         mysqli_query($con, $update);
@@ -50,7 +50,7 @@ function updateDisco($con, Int $id, ?String $nome, ?String $descricao, ?Int $id_
         $ext = '.png';
         move_uploaded_file($_FILES['foto']['tmp_name'], '../images/'.$nFt.$ext);
 
-        $nomeFoto = '../images/'.$nFt.$id.$ext;
+        $nomeFoto = '../images/'.$nFt.$ext;
 
         $update = "UPDATE discos SET foto = '{$nomeFoto}' WHERE id = {$id} ";
         mysqli_query($con, $update);
